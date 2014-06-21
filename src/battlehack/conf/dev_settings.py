@@ -13,7 +13,7 @@ CSRF_COOKIE_SECURE = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
+        'NAME': os.path.join(ROOT_DIR, 'db.sqlite'),
     }
 }
 

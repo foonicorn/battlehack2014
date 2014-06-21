@@ -1,4 +1,4 @@
-from battlehack.core.views import GenericTemplateView
+from battlehack.utils.views import GenericTemplateView
 
 
 class TestGenericTemplateView:

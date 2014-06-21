@@ -89,7 +89,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    'battlehack.core.context_processors.config',
+    'battlehack.utils.context_processors.config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,6 +116,8 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'south',
     'rest_framework',
+
+    'battlehack.core',
 )
 
 AUTHENTICATION_BACKENDS = (
