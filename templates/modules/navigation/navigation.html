@@ -1,18 +1,30 @@
-<nav role="navigation">
+<nav class="navigation" role="navigation">
 	<ul>
 		{% if request.user.is_authenticated %}
 			<li>
-				<a href="#new" title="create a new challenge">New challenge</a>
+				<a href="#new" title="create a new challenge">
+					<i class="fa fa-plus fa-lg"></i>
+					<span>New challenge</span>
+				</a>
 			</li>
 			<li>
-				<a href="#new" title="create a new challenge">List my challenges</a>
+				<a href="#new" title="create a new challenge">
+					<i class="fa fa-navicon fa-lg"></i>
+					<span>List my challenges</span>
+				</a>
 			</li>
 			<li>
-				<a href="#new" title="create a new challenge">Logout</a>
+				<a href="#new" title="create a new challenge">
+					<i class="fa fa-power-off fa-lg"></i>
+					<span>Logout</span>
+				</a>
 			</li>
 		{% else %}
 			<li>
-				<a href="#signup" title="sign up">Sign up</a>
+				<a href="#signup" title="sign up">
+					<i class="fa fa-power-on fa-lg"></i>
+					<span>Sign up</span>
+				</a>
 			</li>
 		{% endif %}
 	</ul>

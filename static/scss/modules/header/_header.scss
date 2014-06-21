@@ -1,0 +1,14 @@
+header {
+	@include box-shadow($color-shadow 0 1px 10px);
+	@include pie-clearfix();
+	position: fixed;
+	padding: $grid-gutter;
+	width: 100%;
+	color: $color-navigation-text;
+	background: #3A3A3A;
+	border-bottom: 1px solid rgba($color-navigation-text, 0.5);
+
+	h1 {
+		float: left;
+	}
+}

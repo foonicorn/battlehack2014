@@ -1,0 +1,20 @@
+.navigation {
+	float: right;
+
+	ul {
+		text-align: right;
+	}
+
+	li {
+		@include inline-block();
+	}
+
+	a {
+		color: $color-navigation-text;
+		text-decoration: none;
+	}
+
+	span {
+		display: none;
+	}
+}

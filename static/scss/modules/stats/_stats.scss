@@ -1,0 +1,11 @@
+.stats {
+	@include box-shadow(inset 3px 3px 270px #000000);
+	padding: $grid-gutter;
+	color: $color-stats-text;
+	text-align: center;
+	background: #000;
+	@include background-image(
+		url("../img/default/tweed.png"),
+		linear-gradient($color-stats, rgba($color-stats, 0.0))
+	);
+}

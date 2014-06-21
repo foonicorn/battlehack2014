@@ -1,5 +1,14 @@
-$color-primary: #290009;
-$color-secondary: #F1928F;
-$color-terziary: #A43668;
-$color-background: #F1EEBC;
+$grid-gutter: 10px;
+$grid-break: 700px;
+$grid-max: 1000px;
+
+$color-primary: #A43668;
+$color-secondary: #290009;
+$color-tertiary: #F1928F;
+$color-background: #FFFFFF; //#8C8C8C
 $color-highlight: #590230;
+$color-text: $color-primary;
+$color-navigation-text: #ffffff;
+$color-stats: $color-primary;
+$color-stats-text: #ffffff;
+$color-shadow: #000000;
