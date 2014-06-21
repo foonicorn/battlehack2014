@@ -22,6 +22,10 @@ define(function(require) {
 
 		render: function() {
 			return this;
+		},
+
+		destroy: function() {
+			return this;
 		}
 
 	});

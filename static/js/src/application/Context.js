@@ -13,13 +13,22 @@ define(function(require) {
 		initialize: function () {
 			var
 				router = new Router(),
-				contentView = new ContentView({
-					el: $('body'),
-					context: this
-				}).render()
+				contentView
 			;
 
+			if (!window.battlehack ||
+				!window.battlehack.settings ||
+				!window.battlehack.settings.authenticated) {
+				// Stop to init aplication cause somthing is not ready...
+				return;
+			}
+
 			// Base setup:
+			contentView = new ContentView({
+				el: $('.content'),
+				context: this
+			}).render();
+
 			// this.wireCommands({'application:start': [
 			// 	InitChallengeCommand
 			// ]});
