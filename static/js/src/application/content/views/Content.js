@@ -29,6 +29,8 @@ define(function(require) {
 			_.each(this._views, function(view) {
 				view.destroy();
 			});
+
+			this._views = [];
 		}
 	});
 });

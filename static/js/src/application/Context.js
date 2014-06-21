@@ -24,10 +24,11 @@ define(function(require) {
 			}
 
 			// Base setup:
-			contentView = new ContentView({
+			this.contentView = new ContentView({
 				el: $('.content'),
 				context: this
 			}).render();
+			this.wireValue('views:content', this.contentView);
 
 			this.wireCommands({'application:start': [
 				InitChallengeCommand
@@ -38,7 +39,6 @@ define(function(require) {
 			this._setupChallenge(router, this);
 
 			// Start:
-			this.wireValue('views:content', contentView);
 			this.wireValue('router', router);
 			this.vent.trigger('application:start');
 			Backbone.history.start();
@@ -49,10 +49,13 @@ define(function(require) {
 
 		_setupIndex: function(router, context) {
 			// Wire commands:
-			this.wireCommands({'index:init': []});
+			this.wireCommands({'index:init': [
+				InitOverviewCommand
+			]});
 
 			// Setup route:
 			router.route('*index', 'index', function() {
+				context.contentView.clean();
 				context.vent.trigger('index:init');
 			});
 		},
@@ -63,6 +66,7 @@ define(function(require) {
 
 			// Setup route:
 			router.route('challenge/:id', 'challenge', function(id) {
+				context.contentView.clean();
 				context.vent.trigger('challenge:start', {id: id});
 			});
 		}
