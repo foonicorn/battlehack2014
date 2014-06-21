@@ -8,7 +8,7 @@
 			segmentShowStroke: false,
 			animateScale: true,
 			colors: [
-				'#000',
+				'#a43668',
 				'#FFF'
 			]
 		}

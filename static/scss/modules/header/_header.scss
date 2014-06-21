@@ -6,9 +6,16 @@ header {
 	width: 100%;
 	color: $color-navigation-text;
 	background: #3A3A3A;
-	border-bottom: 1px solid rgba($color-navigation-text, 0.5);
+	border-bottom: 1px solid rgba($color-primary, 0.5);
 
 	h1 {
 		float: left;
+		margin: 0;
+		padding: 0;
+		color: $color-primary;
+
+		&:after {
+			display: none;
+		}
 	}
 }
