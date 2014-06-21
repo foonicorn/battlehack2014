@@ -1,10 +1,8 @@
-{% if not request.user.is_authenticated %}
-	<div class="authentication">
-		<h2>Login with:</h2>
-		<ul>
-			<li>
-				<a href="{% url 'social:begin' backend='github' %}" class="github">Login with GitHub</a>
-			</li>
-		</ul>
-	</div>
-{% endif %}
+<div class="authentication">
+	<h2>Login with:</h2>
+	<ul>
+		<li>
+			<a href="{% url 'social:begin' backend='github' %}" class="github">Login with GitHub</a>
+		</li>
+	</ul>
+</div>
