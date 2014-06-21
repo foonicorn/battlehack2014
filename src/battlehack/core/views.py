@@ -1,9 +1,3 @@
-import os
+from django.shortcuts import render
 
-from django.views.generic import TemplateView
-
-
-class GenericTemplateView(TemplateView):
-    def get_template_names(self):
-        template_filename = '%s.html' % (self.kwargs['template'] or 'index')
-        return [os.path.join('test', template_filename)]
+# Create your views here.

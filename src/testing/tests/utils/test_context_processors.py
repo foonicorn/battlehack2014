@@ -1,4 +1,4 @@
-from battlehack.core.context_processors import config
+from battlehack.utils.context_processors import config
 
 
 def test_config_context_processor(rf):

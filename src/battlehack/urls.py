@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from battlehack.core.views import GenericTemplateView
+from battlehack.utils.views import GenericTemplateView
 
 
 admin.autodiscover()
