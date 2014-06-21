@@ -4604,6 +4604,45 @@ tbody.collapse.in {
   color: #444444;
 }
 
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #999999;
+  border-radius: 10px;
+}
+.badge:empty {
+  display: none;
+}
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+.btn-xs .badge, .btn-group-xs > .btn .badge {
+  top: 0;
+  padding: 1px 5px;
+}
+a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+  color: #428bca;
+  background-color: white;
+}
+.nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+
+a.badge:hover, a.badge:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;
@@ -6823,11 +6862,11 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 }
 
 body {
-  background-image: url("../img/default/tweed.png?1403370240");
+  background-image: url("../img/default/tweed.png?1403371043");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   body {
-    background-image: url("../img/retina/tweed.png?1403370240");
+    background-image: url("../img/retina/tweed.png?1403371043");
     background-size: 200px 200px;
   }
 }

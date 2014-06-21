@@ -1,0 +1,11 @@
+<ul class="list-group">
+	{% for item in list %}
+		<li class="list-group-item">
+			<span class="badge">{{ item.amount }}€</span>
+			<a href="#" title="">
+				<h2 class="list-group-item-heading">{{ item.title }}</h2>
+				<p class="list-group-item-text">{{ item.description }}</p>
+			</a>
+		</li>
+	{% endfor %}
+</ul>
