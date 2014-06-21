@@ -3,7 +3,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from battlehack.core import views
-from testing.factories.factory_core import ChallengeFactory
+from testing.factories.factory_core import ChallengeFactory, CharityFactory
 from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
 
@@ -57,3 +57,33 @@ class TestChallengeList:
         response = views.challenge_list(request)
         assert response.status_code == 200
         assert challenge not in response.context_data['object_list']
+
+
+@pytest.mark.django_db
+class TestChallengeCreate:
+
+    def test_anon(self):
+        request = RequestFactory.get('/')
+        response = views.challenge_create(request)
+        assert response.status_code == 302
+        assert response['Location'].startswith(reverse('core:login'))
+
+    def test_get(self):
+        user = UserFactory.create()
+        request = RequestFactory.get('/', user=user)
+        response = views.challenge_create(request)
+        assert response.status_code == 200
+
+    def test_post(self):
+        user = UserFactory.create()
+        charity = CharityFactory.create()
+        data = {
+            'title': 'foo',
+            'description': 'bar',
+            'charity': charity.id,
+            'amount': '1.50',
+        }
+        request = RequestFactory.post('/', user=user, data=data)
+        response = views.challenge_create(request)
+        assert response.status_code == 302
+        assert response['Location'] == '/foo/'
