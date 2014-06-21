@@ -2,7 +2,10 @@
 	{% for item in list %}
 		<li>
 			<a href="#" title="">
-				<span class="badge">{{ item.amount }}€</span>
+				<span class="badge">
+					<i class="fa fa-thumbs-{{ forloop.counter|divisibleby:2|yesno:'down,up' }}"></i>
+					{{ item.amount }}€
+				</span>
 				<strong>{{ item.title }}</strong>
 				<em>{{ item.description }}</em>
 			</a>
