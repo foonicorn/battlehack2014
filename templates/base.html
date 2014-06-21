@@ -19,7 +19,12 @@
 		<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		{% block content %}{% endblock %}
-		<script type="text/javascript" src="/static/js/libs/require/require.js" data-main="/static/js/src/application"></script>
+		{% include "modules/header/header.html" %}
+
+		{% block content %}
+		{% endblock %}
+
+		<script type="text/javascript" src="{% static 'js/libs/require/require.js' %}" data-main="{% static 'js/src/application' %}"></script>
+
 	</body>
 </html>
