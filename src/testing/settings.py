@@ -23,9 +23,8 @@ if os.environ.get('JENKINS_URL', None) is not None:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'battlehack_test',
-            'HOST': 'localhost'
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
         }
     }
 
