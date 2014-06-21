@@ -21,6 +21,7 @@ define(function(require) {
 		constructor: function(Context) {
 			Marionette.Application.prototype.constructor.apply(this, arguments);
 			this.context = new Context(this);
+			this.context.app = this;
 		},
 
 		start: function() {
