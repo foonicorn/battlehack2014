@@ -8,7 +8,8 @@ define(function(require) {
 
 		InitChallengeCommand = require('application/challenge/commands/Init'),
 
-		InitOverviewCommand = require('application/overview/commands/Init')
+		InitOverviewCommand = require('application/overview/commands/Init'),
+		InitCreateCommand = require('application/create/commands/Init')
 	;
 
 	return Geppetto.Context.extend({
@@ -39,6 +40,7 @@ define(function(require) {
 			// Setup routes:
 			this._setupIndex(router, this);
 			this._setupChallenge(router, this);
+			this._setupCreate(router, this);
 
 			// Start:
 			this.wireValue('router', router);
@@ -69,7 +71,20 @@ define(function(require) {
 			// Setup route:
 			router.route('challenge/:id', 'challenge', function(id) {
 				context.contentView.clean();
-				context.vent.trigger('challenge:start', {id: id});
+				context.vent.trigger('challenge:init', {id: id});
+			});
+		},
+
+		_setupCreate: function(router, context) {
+			// Wire commands:
+			this.wireCommands({'create:init': [
+				InitCreateCommand
+			]});
+
+			// Setup route:
+			router.route('create/', 'challenge', function(id) {
+				context.contentView.clean();
+				context.vent.trigger('create:start', {id: id});
 			});
 		}
 	});

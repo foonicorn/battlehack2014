@@ -1,7 +1,8 @@
 define(function(require) {
 	var
 		$ = require('jquery'),
-		OverviewView = require('application/overview/views/Overview'),
+		Model = require('application/challenge/models/Challenge'),
+		View = require('application/create/views/Create')
 		Command = function() {}
 	;
 
@@ -9,12 +10,11 @@ define(function(require) {
 
 		execute: function() {
 			var
-				collection = this.context.getObject('collections:challenges')
-				view = new OverviewView({
+				model = new Model(),
+				view = new View({
 					el: $('.content'),
-					collection: collection,
-					context: this.context
-				})
+					model: model
+				});
 			;
 
 			this.context.contentView.renderView(view);
