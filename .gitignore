@@ -1,0 +1,61 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+.DS_Store
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+junit-*.xml
+coverage.xml
+.pip_download_cache
+
+# Translations
+*.mo
+
+# Editors
+.mr.developer.cfg
+.project
+.pydevproject
+.idea
+.ropeproject
+
+# Sphinx
+docs/_build
+
+# Cookiecutter
+output/
+boilerplate/
+
+# Other stuff
+.sass-cache
+_thumbs
+*.vpp~*
+node_modules
+.cache
+dump.rdb
+.specsrunner.html
+.grunt
+
+# Project specific
+src/battlehack/settings.py

@@ -1,0 +1,18 @@
+{
+  "name": "battlehack-2014",
+  "description": "Contains all the ingredients to bake new cookies.",
+  "private": true,
+  "version": "0.1.0",
+  "author": "Battle Hack 2014",
+  "license": "Moccu License",
+  "devDependencies": {
+    "grunt": "0.4.4",
+    "grunt-requirejs": "git://github.com/moccu/grunt-requirejs.git",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-jscs-checker": "0.5.1",
+    "grunt-scss-lint": "0.1.11",
+    "grunt-lintspaces": "0.5.1",
+    "merge": "~1.1.3"
+  }
+}

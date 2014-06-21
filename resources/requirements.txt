@@ -1,0 +1,7 @@
+Django==1.6.5
+South==0.8.4
+
+Pillow==2.4.0
+django-filter==0.7
+djangorestframework==2.3.14
+python-social-auth==0.1.26

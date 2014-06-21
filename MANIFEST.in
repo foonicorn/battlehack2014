@@ -1,0 +1,6 @@
+include setup.py README.rst Makefile MANIFEST.in
+recursive-include templates *
+recursive-include static *
+global-exclude *.pyc
+global-exclude *.pyo
+prune src/docs/_build

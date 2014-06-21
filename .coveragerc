@@ -1,0 +1,8 @@
+[run]
+branch = True
+omit =
+    src/battlehack/*settings.py
+    src/battlehack/urls.py
+    src/battlehack/wsgi.py
+    */__init__.py
+    *migrations*
