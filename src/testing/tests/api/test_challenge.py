@@ -46,3 +46,10 @@ class TestChallengeList:
         request = RequestFactory.get('/', user=user, data={'format': 'json'})
         response = challenge_list(request)
         assert len(response.data) == 0
+
+    def test_get_empty(self):
+        user = UserFactory.create()
+        request = RequestFactory.get('/', user=user, data={'format': 'json'})
+        response = challenge_list(request)
+        assert response.status_code == 200
+        assert len(response.data) == 0
