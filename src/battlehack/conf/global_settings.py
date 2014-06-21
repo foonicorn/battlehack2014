@@ -55,6 +55,8 @@ LOCALE_PATHS = (
 )
 
 LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('core:logout')
+LOGIN_REDIRECT_URL = reverse_lazy('core:index')
 
 # Do not make the session and csrf cookie secure (https:// only)
 SESSION_COOKIE_SECURE = True
@@ -121,8 +123,12 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'social.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+SOCIAL_AUTH_GITHUB_KEY = '4d5c996cb4cd232471c6'
+SOCIAL_AUTH_GITHUB_SECRET = '603eb2822b5e4cdd42416acb48d057118a14989d'
 
 LOGGING = {
     'version': 1,

@@ -13,6 +13,7 @@ urlpatterns = patterns(
     url('^api/', include('battlehack.api.urls', namespace='api')),
     url('^socialauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', include(admin.site.urls)),
+    url('^', include('battlehack.core.urls', namespace='core')),
 )
 
 
