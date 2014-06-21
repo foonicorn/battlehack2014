@@ -2,7 +2,6 @@ var
 	configuration = require('../configuration')
 ;
 
-
 module.exports = function(grunt) {
 
 	grunt.config('clean', {
