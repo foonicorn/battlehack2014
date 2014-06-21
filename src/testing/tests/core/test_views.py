@@ -2,7 +2,7 @@ import pytest
 
 from django.core.urlresolvers import reverse
 
-from battlehack.core import views
+from battlehack.core import views, models
 from testing.factories.factory_core import ChallengeFactory, CharityFactory
 from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
@@ -85,5 +85,6 @@ class TestChallengeCreate:
         }
         request = RequestFactory.post('/', user=user, data=data)
         response = views.challenge_create(request)
+        challenge = models.Challenge.objects.get(owner=user)
         assert response.status_code == 302
-        assert response['Location'] == '/foo/'
+        assert response['Location'] == '/paypal/start/{0}/'.format(challenge.pk)

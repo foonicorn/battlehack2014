@@ -10,9 +10,10 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url('^socialauth/', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^socialauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', include(admin.site.urls)),
-    url('^', include('battlehack.core.urls', namespace='core')),
+    url(r'^paypal/', include('battlehack.paypal.urls', namespace='paypal')),
+    url(r'^', include('battlehack.core.urls', namespace='core')),
 )
 
 

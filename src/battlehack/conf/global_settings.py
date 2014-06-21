@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'battlehack.core',
+    'battlehack.paypal',
 )
 
 AUTHENTICATION_BACKENDS = (

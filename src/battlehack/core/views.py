@@ -1,10 +1,12 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, CreateView
 
 from . import models, forms
+
 
 class IndexView(TemplateView):
     template_name = 'core/index.html'
@@ -46,7 +48,6 @@ challenge_list = ChallengeList.as_view()
 class ChallengeCreate(CreateView):
     model = models.Challenge
     form_class = forms.ChallengeCreateForm
-    success_url = '/foo/'
     template_name = 'core/challenge_create.html'
 
     @method_decorator(login_required)
@@ -55,6 +56,9 @@ class ChallengeCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(owner=self.request.user)
-        return HttpResponseRedirect(self.get_success_url())
+        return HttpResponseRedirect(self.get_success_url(self.object))
+
+    def get_success_url(self, challenge):
+        return reverse('paypal:start', kwargs={'challenge_pk': challenge.pk})
 
 challenge_create = ChallengeCreate.as_view()
