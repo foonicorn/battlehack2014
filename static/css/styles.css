@@ -1997,15 +1997,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 html
 body {
-  background-image: url("../img/default/tweed.png");
-  background-size: 200px 200px;
+  background: #fcfcfc;
   font-family: "Open Sans", sans-serif;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-ms-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
-  html
-  body {
-    background-image: url("../img/retina/tweed.png");
-  }
 }
 
 .container {

@@ -4,13 +4,8 @@
 
 html
 body {
-	background-image: url("../img/default/tweed.png");
-	background-size: 200px 200px;
+	background: $color-background;
 	font-family: "Open Sans", sans-serif;
-
-	@include media-retina() {
-		background-image: url("../img/retina/tweed.png");
-	}
 }
 
 .container {
