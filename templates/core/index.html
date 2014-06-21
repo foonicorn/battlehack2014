@@ -2,11 +2,11 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-	<p>Hello {{ request.user.username }}</p>
-	<a href="{% url 'core:logout' %}">Logout</a>
-{% else %}
-	<a href="{% url 'social:begin' backend='github' %}">Login with GitHub</a>
-{% endif %}
+	{% if request.user.is_authenticated %}
+		<p>Hello {{ request.user.username }}</p>
+		<a href="{% url 'core:logout' %}">Logout</a>
+	{% endif %}
+
+	{% include "modules/authentication/authentication.html" %}
 
 {% endblock %}

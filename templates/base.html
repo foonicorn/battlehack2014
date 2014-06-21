@@ -1,3 +1,6 @@
+{% load static from staticfiles %}
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>	<html class="no-js ie6 oldie msie"> <![endif]-->
 <!--[if IE 7]>		<html class="no-js ie7 oldie msie"> <![endif]-->
@@ -14,10 +17,7 @@
 		<title>battlehack</title>
 	</head>
 	<body>
-
-		{% block content %}
-		{% endblock %}
-
+		{% block content %}{% endblock %}
 		<script type="text/javascript" src="/static/js/libs/require/require.js" data-main="/static/js/src/application"></script>
 	</body>
 </html>
