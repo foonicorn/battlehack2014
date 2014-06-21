@@ -4,7 +4,7 @@ define(function() {
 
 	Command.prototype.execute = function() {
 		// Overwrite this function...
-	}
+	};
 
 	return Command;
 

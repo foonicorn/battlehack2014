@@ -1,7 +1,7 @@
 define(function(require) {
 	var
-		$ = require('jquery'),
-		_ = require('underscore'),
+		// $ = require('jquery'),
+		// _ = require('underscore'),
 		Backbone = require('backbone'),
 		ChallengeModel = require('application/challenge/models/Challenge')
 	;

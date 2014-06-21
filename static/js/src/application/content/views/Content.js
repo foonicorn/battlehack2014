@@ -1,8 +1,9 @@
 define(function(require) {
 
 	var
-		$ = require('jquery'),
+		// $ = require('jquery'),
 		_ = require('underscore'),
+		Backbone = require('backbone'),
 		View = require('core/View')
 	;
 
@@ -13,7 +14,6 @@ define(function(require) {
 		},
 
 		render: function() {
-			console.log('render content view');
 			return this;
 		},
 

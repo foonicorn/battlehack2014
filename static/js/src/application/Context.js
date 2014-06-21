@@ -1,5 +1,6 @@
 define(function(require) {
 	var
+		$ = require('jquery'),
 		Backbone = require('backbone'),
 		Geppetto = require('geppetto'),
 		Router = require('application/Router'),
@@ -15,7 +16,7 @@ define(function(require) {
 				contentView = new ContentView({
 					el: $('body'),
 					context: this
-				}).render();
+				}).render()
 			;
 
 			// Base setup:
@@ -28,6 +29,7 @@ define(function(require) {
 			this._setupChallenge(router, this);
 
 			// Start:
+			this.wireValue('views:content', contentView);
 			this.wireValue('router', router);
 			this.vent.trigger('application:init');
 			Backbone.history.start();
