@@ -4,6 +4,9 @@ from battlehack.core import models
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = models.Challenge
-        fields = ('id', 'title', 'description', 'charity', 'amount')
+        fields = (
+            'owner', 'id', 'title', 'description', 'charity', 'amount',
+            'date_created', 'date_updated')
