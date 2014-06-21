@@ -8,7 +8,7 @@ define(function(require) {
 
 	return View.extend({
 
-		_init: function(options) {
+		_init: function() {
 			this._views = [];
 		},
 

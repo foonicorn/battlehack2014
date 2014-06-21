@@ -7,6 +7,10 @@ define(function(require) {
 	;
 
 	return Backbone.Collection.extend({
-		model: ChallengeModel
+		model: ChallengeModel,
+
+		initialize: function(options) {
+			this.url = options.url;
+		}
 	});
 });

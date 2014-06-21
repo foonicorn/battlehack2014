@@ -4,9 +4,9 @@ define(function(require) {
 		Backbone = require('backbone'),
 		Geppetto = require('geppetto'),
 		Router = require('application/Router'),
-		ContentView = require('application/content/views/Content')
+		ContentView = require('application/content/views/Content'),
 
-		// InitChallengeCommand = require('application/challenge/commands/InitCommand')
+		InitChallengeCommand = require('application/challenge/commands/Init')
 	;
 
 	return Geppetto.Context.extend({
@@ -29,9 +29,9 @@ define(function(require) {
 				context: this
 			}).render();
 
-			// this.wireCommands({'application:start': [
-			// 	InitChallengeCommand
-			// ]});
+			this.wireCommands({'application:start': [
+				InitChallengeCommand
+			]});
 
 			// Setup routes:
 			this._setupIndex(router, this);
@@ -40,8 +40,11 @@ define(function(require) {
 			// Start:
 			this.wireValue('views:content', contentView);
 			this.wireValue('router', router);
-			this.vent.trigger('application:init');
+			this.vent.trigger('application:start');
 			Backbone.history.start();
+
+			//@ToDo: Remove this:
+			window.battlehack.context = this;
 		},
 
 		_setupIndex: function(router, context) {
