@@ -24,6 +24,15 @@
 		{% block content %}
 		{% endblock %}
 
+
+		<script type="text/javascript">
+			window.battlehack = window.battlehack || {};
+			window.battlehack.settings = {
+				authenticated: {{ request.user.is_authenticated|yesno:'true,false' }}
+				{% block settings %}
+				{% endblock %}
+			};
+		</script>
 		<script type="text/javascript" src="{% static 'js/libs/require/require.js' %}" data-main="{% static 'js/src/application' %}"></script>
 
 	</body>
