@@ -116,6 +116,8 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'south',
     'rest_framework',
+
+    'battlehack.core',
 )
 
 AUTHENTICATION_BACKENDS = (
