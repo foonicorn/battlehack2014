@@ -5,14 +5,24 @@ from django.core.urlresolvers import reverse
 from . import models
 
 
-def payment_owner_create(challenge):
+def payment_owner_create(challenge, base_url):
     if check_payment_exists(challenge, challenge.owner):
         raise Exception('Payment already exists')
+
+    payment = models.Payment.objects.create(
+        challenge=challenge,
+        user=challenge.owner,
+        type=models.TYPE_OWNER,
+        status=models.STATUS_INITIATED
+    )
+
+    base_url = base_url.strip('/')
+    return_url = base_url + reverse('paypal:success', kwargs={'payment_pk': payment.pk})
 
     payment_request = paypalrestsdk.Payment({
         'intent': 'authorize',
         'redirect_urls': {
-            'return_url': reverse('paypal:success'),
+            'return_url': return_url,
             'cancel_url': 'http://localhost:8000/paypal/cancel/',
         },
         'payer': {
@@ -29,15 +39,25 @@ def payment_owner_create(challenge):
 
     result = payment_request.create()
     if not result:
+        payment.status = models.STATUS_FAILED
+        payment.save()
         raise Exception(payment_request.error)
 
-    payment = models.Payment(
-        pid=payment_request.id,
-        challenge=challenge,
-        user=challenge.owner,
-        type=models.TYPE_OWNER,
-        status=models.STATUS_CREATED
-    )
+    payment.pid = payment_request.id
+    payment.status = models.STATUS_CREATED
+    payment.save()
+    return payment_request
+
+
+def execute_payment(payment, payer_id):
+    payment_request = paypalrestsdk.Payment.find(payment.pid)
+    result = payment_request.execute({'payer_id': payer_id})
+    if not result:
+        payment.status = models.STATUS_FAILED
+        payment.save()
+        raise Exception(payment_request.error)
+
+    payment.status = models.STATUS_EXECUTED
     payment.save()
     return payment_request
 
