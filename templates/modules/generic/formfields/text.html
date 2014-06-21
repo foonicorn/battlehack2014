@@ -1,0 +1,14 @@
+<div class="formfield-text {{ field.id_for_label }}{% if field.errors %} error{% endif %}">
+	<label for="{{ field.id_for_label }}">
+		{{ field.label }}
+	</label>
+
+	<div>
+		{{ field }}
+		{% if field.errors %}
+			<sub>
+				{{ field.errors }}
+			</sub>
+		{% endif %}
+	</div>
+</div>

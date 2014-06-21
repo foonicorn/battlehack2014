@@ -1914,6 +1914,81 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
+.create-challenge form {
+  padding: 20px 10px;
+}
+@media screen and (min-width: 960px) {
+  .create-challenge form {
+    padding: 40px;
+  }
+}
+.create-challenge label {
+  display: block;
+  text-transform: uppercase;
+}
+.create-challenge input[type=text],
+.create-challenge input[type=email] {
+  border: 0;
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 0 10px;
+}
+.create-challenge sub {
+  display: block;
+  margin-top: 5px;
+  color: #a43668;
+}
+.create-challenge .error span,
+.create-challenge .error input {
+  outline: 2px solid #a43668;
+}
+.create-challenge .select {
+  position: relative;
+  background-color: #f1928f;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.create-challenge .select span {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-family: Arial, sans-serif;
+  text-transform: none;
+  color: #a43668;
+  padding: 0 5px;
+  font-size: 14px;
+  width: 100%;
+  height: 28px;
+  line-height: 26px;
+}
+.create-challenge .select select {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.create-challenge button {
+  background-color: #a43668;
+  border: none;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+.create-challenge button i {
+  margin-right: 5px;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1922,8 +1997,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 html
 body {
-  font-family: Verdana, sans-serif;
-  background: #fcfcfc;
+  background-image: url("../img/default/tweed.png");
+  background-size: 200px 200px;
+  font-family: "Open Sans", sans-serif;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-ms-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
+  html
+  body {
+    background-image: url("../img/retina/tweed.png");
+  }
 }
 
 .container {
@@ -2076,22 +2158,13 @@ header h1:after {
   background: #a43668;
 }
 
-.btn-facebook {
-  color: #fff;
-  background-color: #4c66a4;
-  border-color: #4c66a4;
+.create-challenge {
+  width: 100%;
+  padding: 0 10px;
 }
-.btn-facebook:hover, .btn-facebook:focus {
-  background-color: #3B5998;
-  color: #fff;
-}
-
-.btn-github {
-  color: #000;
-  background-color: #dddddd;
-  border-color: #d5d5d5;
-}
-.btn-github:hover, .btn-github:focus {
-  background-color: #eeeeee;
-  color: #000;
+@media screen and (min-width: 700px) {
+  .create-challenge {
+    width: 700px;
+    margin: 0 auto;
+  }
 }

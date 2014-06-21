@@ -1,5 +1,5 @@
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit"/>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+	{% include "modules/challenge/create.html" with form=form %}
+{% endblock %}

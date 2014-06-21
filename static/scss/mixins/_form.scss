@@ -1,0 +1,82 @@
+%form {
+	form {
+		padding: 20px 10px;
+
+		@include grid-break($grid-max) {
+			padding: (4 * $grid-gutter);
+		}
+	}
+
+	label {
+		display: block;
+		text-transform: uppercase;
+	}
+
+	input[type=text],
+	input[type=email] {
+		border: 0;
+		display: block;
+		width: 100%;
+		height: 30px;
+		padding: 0 10px;
+	}
+
+	sub {
+		display: block;
+		margin-top: 5px;
+		color: $color-primary;
+	}
+
+	.error span,
+	.error input {
+		outline: 2px solid $color-primary;
+	}
+
+	.select {
+		position: relative;
+		background-color: $color-tertiary;
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+
+		span {
+			@include inline-block();
+			font-family: Arial, sans-serif;
+			text-transform: none;
+			color: $color-primary;
+			padding: 0 5px;
+			font-size: 14px;
+			width: 100%;
+			height: 28px;
+			line-height: 26px;
+		}
+
+		select {
+			@include opacity(0);
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		}
+	}
+
+	button {
+		background-color: $color-primary;
+		border: none;
+		cursor: pointer;
+		color: $color-stats-text;
+		text-transform: uppercase;
+		padding: 5px 10px;
+		font-size: 16px;
+
+		i {
+			margin-right: 5px;
+		}
+	}
+}
+
+@mixin form() {
+	@extend %form;
+}

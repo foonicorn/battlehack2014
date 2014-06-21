@@ -1,0 +1,10 @@
+.create-challenge {
+	@include form();
+	width: 100%;
+	padding: 0 $grid-gutter;
+
+	@include grid-break($grid-break) {
+		width: $grid-break;
+		margin: 0 auto;
+	}
+}
