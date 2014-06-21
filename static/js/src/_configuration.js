@@ -20,7 +20,8 @@ define(function () {
 			marionette: '../libs/backbone/backbone.marionette',
 			geppetto: '../libs/backbone/backbone.geppetto',
 			text: '../libs/require/require.text',
-			bootstrapCollapse: '../libs/bootstrap/collapse'
+			bootstrapCollapse: '../libs/bootstrap/collapse',
+			bootstrapModal: '../libs/bootstrap/modal'
 		},
 
 		shim: {
@@ -45,6 +46,9 @@ define(function () {
 				exports: 'Backbone.Geppetto'
 			},
 			bootstrapCollapse: {
+				deps: ['jquery']
+			},
+			bootstrapModal: {
 				deps: ['jquery']
 			}
 		}

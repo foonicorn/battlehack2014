@@ -4,6 +4,9 @@
 	{% if request.user.is_authenticated %}
 		<div class="content"></div>
 	{% else %}
-		{% include "modules/authentication/authentication.html" %}
+		<div class="jumbotron">
+			{% include "modules/welcome/welcome.html" %}
+			{% include "modules/authentication/authentication.html" %}
+		</div>
 	{% endif %}
 {% endblock %}
