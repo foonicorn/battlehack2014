@@ -40,4 +40,4 @@ class TestPaypalSuccess:
         request = RequestFactory.get('/', user=payment.user, data={'PayerID': 'ABC'})
         response = views.success(request, payment_pk=payment.pk)
         assert response.status_code == 302
-        assert response['Location'] == '/foo/'
+        assert response['Location'] == '/challenges/{0}/'.format(payment.challenge.pk)

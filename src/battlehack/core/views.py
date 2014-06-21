@@ -1,9 +1,9 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView
 
 from . import models, forms
 
@@ -62,3 +62,18 @@ class ChallengeCreate(CreateView):
         return reverse('paypal:start', kwargs={'challenge_pk': challenge.pk})
 
 challenge_create = ChallengeCreate.as_view()
+
+
+class ChallengeDetail(DetailView):
+    model = models.Challenge
+    template_name = 'core/challenge_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ChallengeDetail, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        qs = super(ChallengeDetail, self).get_queryset()
+        return qs.filter(owner=self.request.user)
+
+challenge_detail = ChallengeDetail.as_view()

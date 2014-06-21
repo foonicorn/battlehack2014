@@ -88,3 +88,24 @@ class TestChallengeCreate:
         challenge = models.Challenge.objects.get(owner=user)
         assert response.status_code == 302
         assert response['Location'] == '/paypal/start/{0}/'.format(challenge.pk)
+
+
+@pytest.mark.django_db
+class TestChallengeCreate:
+
+    def test_url(self):
+        url = reverse('core:challenge_detail', kwargs={'pk': 1})
+        assert url
+
+    def test_anon(self):
+        request = RequestFactory.get('/')
+        response = views.challenge_detail(request, pk=1)
+        assert response.status_code == 302
+        assert response['Location'].startswith(reverse('core:login'))
+
+    def test_get_owner(self):
+        challenge = ChallengeFactory.create()
+        request = RequestFactory.get('/', user=challenge.owner)
+        response = views.challenge_detail(request, pk=challenge.pk)
+        assert response.status_code == 200
+        assert response.context_data['object'] == challenge

@@ -47,7 +47,6 @@ class PaypalSuccess(RedirectView):
 
     def get_redirect_url(self):
         challenge_pk = self.payment.challenge_id
-        return '/foo/'
-        #return reverse('core:detail', kwargs={'challenge_pk': challenge_pk})
+        return reverse('core:challenge_detail', kwargs={'pk': challenge_pk})
 
 success = PaypalSuccess.as_view()
