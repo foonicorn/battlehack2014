@@ -5,7 +5,8 @@ require(['_configuration'], function(configuration) {
 		'core/Application',
 		'application/Context',
 		// Bootstrap-Stuff
-		'bootstrapCollapse'
+		'bootstrapCollapse',
+		'bootstrapModal'
 	], function(Application, Context) {
 		var app = new Application(Context);
 		app.start();

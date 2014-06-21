@@ -1,0 +1,8 @@
+body {
+	@include img-retina(
+		"default/tweed.png",
+		"retina/tweed.png",
+		image-width("default/tweed.png"),
+		image-height("default/tweed.png")
+	);
+}
