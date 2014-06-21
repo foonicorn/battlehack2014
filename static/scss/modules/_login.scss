@@ -1,0 +1,23 @@
+.btn-facebook {
+	color: #fff;
+	background-color: #4c66a4;
+	border-color: #4c66a4;
+
+	&:hover,
+	&:focus {
+		background-color: #3B5998;
+		color: #fff;
+	}
+}
+
+.btn-github {
+	color: #000;
+	background-color: #dddddd;
+	border-color: #d5d5d5;
+
+	&:hover,
+	&:focus {
+		background-color: #eeeeee;
+		color: #000;
+	}
+}

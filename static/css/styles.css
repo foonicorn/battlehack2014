@@ -4648,7 +4648,7 @@ tbody.collapse.in {
   padding-left: 0;
 }
 
-.list-group-item {
+.list-group-item, .overview li {
   position: relative;
   display: block;
   padding: 10px 15px;
@@ -4656,19 +4656,19 @@ tbody.collapse.in {
   background-color: white;
   border: 1px solid #dddddd;
 }
-.list-group-item:first-child {
+.list-group-item:first-child, .overview li:first-child {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
 }
-.list-group-item:last-child {
+.list-group-item:last-child, .overview li:last-child {
   margin-bottom: 0;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-.list-group-item > .badge {
+.list-group-item > .badge, .overview li > .badge {
   float: right;
 }
-.list-group-item > .badge + .badge {
+.list-group-item > .badge + .badge, .overview li > .badge + .badge {
   margin-right: 5px;
 }
 
@@ -4684,26 +4684,26 @@ a.list-group-item:hover, a.list-group-item:focus {
   background-color: whitesmoke;
 }
 
-.list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
+.list-group-item.disabled, .overview li.disabled, .list-group-item.disabled:hover, .overview li.disabled:hover, .list-group-item.disabled:focus, .overview li.disabled:focus {
   background-color: #eeeeee;
   color: #999999;
 }
-.list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading {
+.list-group-item.disabled .list-group-item-heading, .overview li.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .overview li.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading, .overview li.disabled:focus .list-group-item-heading {
   color: inherit;
 }
-.list-group-item.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text {
+.list-group-item.disabled .list-group-item-text, .overview li.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .overview li.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text, .overview li.disabled:focus .list-group-item-text {
   color: #999999;
 }
-.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+.list-group-item.active, .overview li.active, .list-group-item.active:hover, .overview li.active:hover, .list-group-item.active:focus, .overview li.active:focus {
   z-index: 2;
   color: white;
   background-color: #428bca;
   border-color: #428bca;
 }
-.list-group-item.active .list-group-item-heading, .list-group-item.active:hover .list-group-item-heading, .list-group-item.active:focus .list-group-item-heading {
+.list-group-item.active .list-group-item-heading, .overview li.active .list-group-item-heading, .list-group-item.active:hover .list-group-item-heading, .overview li.active:hover .list-group-item-heading, .list-group-item.active:focus .list-group-item-heading, .overview li.active:focus .list-group-item-heading {
   color: inherit;
 }
-.list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
+.list-group-item.active .list-group-item-text, .overview li.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .overview li.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .overview li.active:focus .list-group-item-text {
   color: #e1edf7;
 }
 
@@ -4942,14 +4942,8 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
     width: 900px;
   }
 }
-/*!
- *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */
-/* FONT PATH
- * -------------------------- */
 @font-face {
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
   src: url("../fonts/fontawesome-webfont.eot?v=4.1.0");
   src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.1.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff?v=4.1.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.1.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular") format("svg");
   font-weight: normal;
@@ -4966,7 +4960,6 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* makes the font 33% larger relative to the icon container */
 .fa-lg {
   font-size: 1.3333333333em;
   line-height: 0.75em;
@@ -4989,8 +4982,6 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   font-size: 5em;
 }
 
-/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
-   readers do not read off random characters that represent icons */
 .fa-glass:before {
   content: "\f000";
 }
@@ -6811,12 +6802,32 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   content: "\f1e2";
 }
 
+.btn-facebook {
+  color: #fff;
+  background-color: #4c66a4;
+  border-color: #4c66a4;
+}
+.btn-facebook:hover, .btn-facebook:focus {
+  background-color: #3B5998;
+  color: #fff;
+}
+
+.btn-github {
+  color: #000;
+  background-color: #dddddd;
+  border-color: #d5d5d5;
+}
+.btn-github:hover, .btn-github:focus {
+  background-color: #eeeeee;
+  color: #000;
+}
+
 body {
-  background-image: url("../img/default/tweed.png?1371499213");
+  background-image: url("../img/default/tweed.png?1403370240");
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   body {
-    background-image: url("../img/retina/tweed.png?1371499214");
+    background-image: url("../img/retina/tweed.png?1403370240");
     background-size: 200px 200px;
   }
 }
