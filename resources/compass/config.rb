@@ -1,5 +1,6 @@
 require "compass-selector-warn" # sudo gem install compass-selector-warn, https://github.com/pixel-shock/compass-selector-warn
 require "rgbapng"				# sudo gem install compass-rgbapng , https://github.com/aaronrussell/compass-rgbapng
+require "bootstrap-sass"
 
 # Selector warn settings
 selector_warn_max     = 2000
