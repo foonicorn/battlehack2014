@@ -19,10 +19,15 @@
 		<link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		{% include "modules/header/header.html" %}
+		<header>
+			{% include "modules/navigation/navigation.html" %}
+		</header>
+
 		<div class="container">
 			{% block content %}
 			{% endblock %}
 		</div>
+
+		<script type="text/javascript" src="{% static 'js/libs/jquery/jquery.js' %}"></script>
 	</body>
 </html>
