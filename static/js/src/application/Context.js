@@ -6,7 +6,9 @@ define(function(require) {
 		Router = require('application/Router'),
 		ContentView = require('application/content/views/Content'),
 
-		InitChallengeCommand = require('application/challenge/commands/Init')
+		InitChallengeCommand = require('application/challenge/commands/Init'),
+
+		InitOverviewCommand = require('application/overview/commands/Init')
 	;
 
 	return Geppetto.Context.extend({
