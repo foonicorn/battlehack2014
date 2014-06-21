@@ -1,7 +1,7 @@
 <ul class="list">
 	{% for item in list %}
 		<li>
-			<a href="#" title="">
+			<a href="{% url 'core:challenge_detail' pk=item.id %}" title="">
 				<span class="badge">
 					<i class="fa fa-thumbs-{{ forloop.counter|divisibleby:2|yesno:'down,up' }}"></i>
 					{{ item.amount }}€
