@@ -54,7 +54,7 @@ LOCALE_PATHS = (
     os.path.join(ROOT_DIR, 'templates/locale'),
 )
 
-LOGIN_URL = reverse_lazy('login')
+LOGIN_URL = reverse_lazy('core:login')
 LOGOUT_URL = reverse_lazy('core:logout')
 LOGIN_REDIRECT_URL = reverse_lazy('core:index')
 
