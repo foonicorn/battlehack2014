@@ -4,6 +4,7 @@ from . import models
 
 
 class ChallengeCreateForm(forms.ModelForm):
+    rival = forms.EmailField(required=True)
 
     class Meta:
         model = models.Challenge
@@ -18,4 +19,6 @@ class ChallengeCreateForm(forms.ModelForm):
         obj = super(ChallengeCreateForm, self).save(commit=False)
         obj.owner = owner
         obj.save()
+        models.Rival.objects.create(
+            challenge=obj, email=self.cleaned_data['rival'])
         return obj

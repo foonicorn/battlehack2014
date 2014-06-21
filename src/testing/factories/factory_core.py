@@ -16,3 +16,9 @@ class ChallengeFactory(factory.DjangoModelFactory):
     description = 'The challenge description'
     charity = factory.SubFactory(CharityFactory)
     amount = 1.50
+
+
+class RivalFactory(factory.DjangoModelFactory):
+    FACTORY_FOR = models.Rival
+    challenge = factory.SubFactory(ChallengeFactory)
+    email = factory.Sequence(lambda n: 'rival-{0}@none.none'.format(n))

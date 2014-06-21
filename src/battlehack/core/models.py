@@ -28,3 +28,17 @@ class Challenge(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Rival(models.Model):
+    challenge = models.ForeignKey(Challenge, verbose_name=_('challenge'))
+    email = models.EmailField(_('email'))
+    user = models.ForeignKey(
+        'auth.User', verbose_name=_('user'), blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('rival')
+        verbose_name_plural = _('rivals')
+
+    def __unicode__(self):
+        return self.email

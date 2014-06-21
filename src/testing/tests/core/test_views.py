@@ -82,6 +82,7 @@ class TestChallengeCreate:
             'description': 'bar',
             'charity': charity.id,
             'amount': '1.50',
+            'rival': 'rival@none.none',
         }
         request = RequestFactory.post('/', user=user, data=data)
         response = views.challenge_create(request)
