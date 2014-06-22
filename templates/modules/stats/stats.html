@@ -1,13 +1,13 @@
 <div class="stats">
-	<h2>Total donations: {{ total_sum }} €</h2>
+	<h2>Total donations: {{ total_sum|floatformat:2 }} €</h2>
 	<div class="legend">
 		<dl>
 			<dt>my self:</dt>
-			<dd data-value="{{ owner_sum|default:'0' }}">{{ owner_sum }} €</dd>
+			<dd data-value="{{ owner_sum|default:'0' }}">{{ owner_sum|floatformat:2 }} €</dd>
 		</dl>
 		<dl>
 			<dt>my rivals:</dt>
-			<dd data-value="{{ rivals_sum|default:'0' }}">{{ rivals_sum }} €</dd>
+			<dd data-value="{{ rivals_sum|default:'0' }}">{{ rivals_sum|floatformat:2 }} €</dd>
 		</dl>
 	</div>
 </div>
