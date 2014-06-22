@@ -5,4 +5,5 @@ urlpatterns = patterns(
     'battlehack.paypal.views',
     url('^start/(?P<uuid>[\w\-]+)/$', 'start', name='start'),
     url('^success/(?P<uuid>[\w\-]+)/$', 'success', name='success'),
+    url('^cancel/(?P<uuid>[\w\-]+)/$', 'cancel', name='cancel'),
 )

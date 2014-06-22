@@ -61,6 +61,8 @@ def finish(owner, rival):
     if owner.status == rival.status:
         results.append(capture_payment(owner.payment))
         results.append(capture_payment(rival.payment))
+    elif rival.status == Attendee.STATUS_REFUSE:
+        results.append(void_payment(owner.payment))
     elif owner.status == Attendee.STATUS_LOOSE:
         results.append(capture_payment(owner.payment))
         results.append(void_payment(rival.payment))

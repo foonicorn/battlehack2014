@@ -41,9 +41,15 @@ class Challenge(models.Model):
 
     @property
     def pending(self):
-        return (
+        if self.rival.status == Attendee.STATUS_REFUSE:
+            return False
+        elif (
             self.owner.status == Attendee.STATUS_PENDING or
-            self.rival.status == Attendee.STATUS_PENDING)
+            self.rival.status == Attendee.STATUS_PENDING
+        ):
+            return False
+        else:
+            return True
 
 
 class Attendee(models.Model):
@@ -57,10 +63,12 @@ class Attendee(models.Model):
     STATUS_PENDING = 'pending'
     STATUS_WIN = 'win'
     STATUS_LOOSE = 'loose'
+    STATUS_REFUSE = 'refuse'
     STATUS_CHOICES = (
         (STATUS_PENDING, _('pending')),
         (STATUS_WIN, _('win')),
         (STATUS_LOOSE, _('loose')),
+        (STATUS_REFUSE, _('refuse')),
     )
 
     challenge = models.ForeignKey(Challenge, verbose_name=_('challenge'))

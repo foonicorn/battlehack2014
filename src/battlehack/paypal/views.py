@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 from . import api
 from .models import Payment
@@ -45,3 +45,9 @@ class PaypalSuccess(RedirectView):
         return reverse('core:challenge_detail', kwargs={'uuid': uuid})
 
 success = PaypalSuccess.as_view()
+
+
+class PaypalCancel(TemplateView):
+    template_name = 'core/paypal_cancel.html'
+
+cancel = PaypalCancel.as_view()
