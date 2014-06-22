@@ -10,10 +10,10 @@ from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
 
 
-def test_index_view(rf):
+def test_index_view():
     url = reverse('core:index')
     assert url
-    request = rf.get(url)
+    request = RequestFactory.get(url)
     response = views.index(request)
     assert response.status_code == 200
 
@@ -69,7 +69,7 @@ class TestChallengeCreate:
         request = RequestFactory.get('/')
         response = views.challenge_create(request)
         assert response.status_code == 302
-        assert response['Location'].startswith(reverse('core:login'))
+        assert response['Location'].startswith(reverse('core:index'))
 
     def test_get(self):
         user = UserFactory.create()
@@ -96,6 +96,7 @@ class TestChallengeCreate:
         expected_rival_url = '/challenges/{0}/'.format(challenge.rival.uuid)
         assert mock.call_args[0][0] == 'rival@none.none'
         assert mock.call_args[0][1].endswith(expected_rival_url)
+        assert mock.call_args[0][2] == 'foo'
 
 
 @pytest.mark.django_db

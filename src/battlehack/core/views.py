@@ -81,7 +81,7 @@ class ChallengeCreate(CreateView):
     def send_email(self):
         path = reverse('core:challenge_detail', kwargs={'uuid': self.object.rival.uuid})
         url = self.request.build_absolute_uri(path)
-        send_rival_email(self.object.rival.email, url)
+        send_rival_email(self.object.rival.email, url, self.object.title)
 
     def get_success_url(self):
         uuid = self.object.owner.uuid
