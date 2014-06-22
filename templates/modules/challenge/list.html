@@ -3,9 +3,9 @@
 		<li class="{{ item.owner.status }}">
 			<a href="{% url 'core:challenge_detail' uuid=item.owner.uuid %}" title="">
 				<span class="badge">
-					{% if object.owner.status == 'win' %}
+					{% if item.owner.status == 'win' %}
 						<i class="fa fa-thumbs-up fa-lg"></i>
-					{% elif object.owner.status == 'loose' %}
+					{% elif item.owner.status == 'loose' %}
 						<i class="fa fa-thumbs-down fa-lg"></i>
 					{% else %}
 						<i class="fa fa-clock-o fa-lg"></i>

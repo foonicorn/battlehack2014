@@ -2100,6 +2100,9 @@ p {
   margin: 0 0 10px;
   text-align: center;
 }
+p strong {
+  font-weight: 600;
+}
 
 a {
   text-decoration: none;
@@ -2365,7 +2368,7 @@ header h1:after {
 }
 .challenge-finished i {
   display: block;
-  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 5em;
 }
 
