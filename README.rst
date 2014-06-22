@@ -1,55 +1,22 @@
-battlehack
-===============================
+BattleHack2014 / Cha+Cha
+========================
 
-Installation
-------------
+About
+-----
 
-.. code-block:: bash
+Cha+Cha is the short name for Challenge+Charity.
 
-    $ Create your virtualenv (recommended, use virtualenvwrapper)
-    $ virtualenv env
+This App is all about doing something good while challenging your friends.
+Instead of gambling for a bottle of beer, the looser will donate a small
+amount of money to a charity organization.
 
-    $ # Activate Environment and install
-    $ source env/bin/activate
-    $ make devinstall
+This app was developed in just 24 hours during BattleHack 2014, a hackathon
+sponsored by PayPal.
 
-    $ # run tests
-    $ make tests
+It utilizes the PayPal-API with delayed payments that are captured / voided
+later when the challenge has been finished.
 
+Technology
+----------
 
-Development settings
---------------------
-
-Create a new file named ``settings.py`` in the ``src/battlehack`` folder with the following content.
-
-.. code-block:: python
-
-    from battlehack.conf.dev_settings import *
-
-And adapt the settings to your environment.
-
-
-Setup the database
-------------------
-
-.. code-block:: bash
-
-    $ python src/manage.py syncdb --migrate --noinput
-
-
-Staring the server & superuser
-------------------------------
-
-.. code-block:: bash
-
-    $ # Create a new super user
-    $ python src/manage.py createsuperuser
-
-Now you can run the webserver and start using the site.
-
-.. code-block:: bash
-
-   $ python src/manage.py runserver
-
-This starts a local webserver on `localhost:8000 <http://localhost:8000/>`_. To
-view the administration interface visit `/admin/ <http://localhost:8000/admin/>`_
+HTML, Javascript, Compass, Django, Grunt
