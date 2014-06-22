@@ -3,7 +3,7 @@
 		{% csrf_token %}
 		{% include "modules/generic/formfields/text.html" with field=form.title %}
 		{% include "modules/generic/formfields/textarea.html" with field=form.description %}
-		{% include "modules/generic/formfields/select.html" with field=form.charity %}
+		{% include "modules/generic/formfields/radio.html" with field=form.charity %}
 		{% include "modules/generic/formfields/text.html" with field=form.amount %}
 		{% include "modules/generic/formfields/submit.html" with label="Submit" icon="fa-trophy" %}
 	</form>

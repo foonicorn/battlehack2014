@@ -62,7 +62,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-style: normal;
 }
 
-.fa {
+.fa, .create-challenge .formfield-radio .radio span {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -1079,7 +1079,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f10b";
 }
 
-.fa-circle-o:before {
+.fa-circle-o:before, .create-challenge .formfield-radio .radio span:before {
   content: "\f10c";
 }
 
@@ -1590,7 +1590,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f191";
 }
 
-.fa-dot-circle-o:before {
+.fa-dot-circle-o:before, .create-challenge .formfield-radio .radio .checked:before {
   content: "\f192";
 }
 
@@ -1924,15 +1924,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 .create-challenge label {
   display: block;
-  text-transform: uppercase;
+  margin: 10px 0 5px;
 }
-.create-challenge input[type=text],
-.create-challenge input[type=email] {
-  border: 0;
+.create-challenge input[type="text"],
+.create-challenge input[type="email"],
+.create-challenge input[type="number"],
+.create-challenge textarea {
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
+  border-radius: 10px !important;
+  border: 3px solid #a43668;
   display: block;
   width: 100%;
   height: 30px;
-  padding: 0 10px;
+  padding: 10px !important;
+  outline: none;
+  font-size: 1em;
+}
+.create-challenge input[type="number"] {
+  padding: 0 10px !important;
+}
+.create-challenge textarea {
+  height: 150px;
+  max-width: 100%;
 }
 .create-challenge sub {
   display: block;
@@ -1943,40 +1959,43 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .create-challenge .error input {
   outline: 2px solid #a43668;
 }
-.create-challenge .select {
+.create-challenge .formfield-radio {
+  margin: 10px 0;
+}
+.create-challenge .formfield-radio li {
+  margin: 5px 0;
+}
+.create-challenge .formfield-radio label {
   position: relative;
-  background-color: #f1928f;
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
+  padding: 4px 0 4px 25px;
 }
-.create-challenge .select span {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  font-family: Arial, sans-serif;
-  text-transform: none;
-  color: #a43668;
-  padding: 0 5px;
-  font-size: 14px;
-  width: 100%;
-  height: 28px;
-  line-height: 26px;
-}
-.create-challenge .select select {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
+.create-challenge .formfield-radio .radio {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  width: 100%;
 }
-.create-challenge button {
+.create-challenge .formfield-radio .radio span,
+.create-challenge .formfield-radio .radio input {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: #a43668;
+}
+.create-challenge .formfield-radio .radio span {
+  font-size: 1.5em;
+}
+.create-challenge .formfield-radio .radio input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+.create-challenge .formfield-submit {
+  text-align: right;
+}
+.create-challenge .formfield-submit button {
   background-color: #a43668;
   border: none;
   cursor: pointer;
@@ -1984,8 +2003,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-transform: uppercase;
   padding: 5px 10px;
   font-size: 16px;
+  outline: none;
+  margin-top: 10px;
 }
-.create-challenge button i {
+.create-challenge .formfield-submit button i {
   margin-right: 5px;
 }
 
@@ -2039,7 +2060,10 @@ a {
   color: #6c6c6c;
 }
 
-.list {
+.create-challenge input[type="text"],
+.create-challenge input[type="email"],
+.create-challenge input[type="number"],
+.create-challenge textarea, .list {
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -ms-border-radius: 10px 10px 0 0;

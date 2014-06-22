@@ -6,4 +6,8 @@
 		});
 	});
 
+	$('input[type=radio]').uniform({
+		radioClass: "radio"
+	});
+
 })();
