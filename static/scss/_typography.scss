@@ -1,6 +1,7 @@
 html,
 body {
 	color: $color-text;
+	line-height: 120%;
 }
 
 h1,
@@ -9,7 +10,7 @@ h3,
 h4 {
 	position: relative;
 	margin: 0 0 $grid-gutter;
-	padding: 0 0 $grid-gutter;
+	padding: $grid-gutter;
 	text-align: center;
 
 	&:after {
@@ -25,7 +26,15 @@ h4 {
 	}
 }
 
+h2 {
+	font-size: 1.35em;
+}
+
 p,
 a {
 	color: $color-text;
+}
+
+p {
+	margin: 0 0 $grid-gutter;
 }

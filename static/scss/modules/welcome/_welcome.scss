@@ -1,9 +1,13 @@
-.stats {
+.welcome {
 	@include box-shadow(inset 3px 3px 270px #000000);
 	margin: 0 0 $grid-gutter;
-	padding: $grid-gutter;
-	color: $color-stats-text;
+	padding: $grid-gutter * 3;
 	text-align: center;
 	border-bottom: 1px solid rgba($color-primary, 0.5);
 	background: url("../img/default/tweed.png");
+
+	h2,
+	p {
+		color: $color-stats-text;
+	}
 }

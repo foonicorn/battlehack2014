@@ -2,28 +2,21 @@
 	<ul>
 		{% if request.user.is_authenticated %}
 			<li>
-				<a href="#new" title="create a new challenge">
+				<a href="{% url 'core:challenge_create' %}" title="create a new challenge">
 					<i class="fa fa-plus fa-lg"></i>
 					<span>New challenge</span>
 				</a>
 			</li>
 			<li>
-				<a href="#new" title="create a new challenge">
+				<a href="{% url 'core:challenge_list' %}" title="create a new challenge">
 					<i class="fa fa-history fa-lg"></i>
 					<span>List my challenges</span>
 				</a>
 			</li>
 			<li>
-				<a href="#new" title="create a new challenge">
+				<a href="{% url 'core:logout' %}" title="create a new challenge">
 					<i class="fa fa-power-off fa-lg"></i>
 					<span>Logout</span>
-				</a>
-			</li>
-		{% else %}
-			<li>
-				<a href="#signup" title="sign up">
-					<i class="fa fa-power-on fa-lg"></i>
-					<span>Sign up</span>
 				</a>
 			</li>
 		{% endif %}

@@ -1,27 +1,27 @@
 <div class="authentication">
-	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login">
-		Login
-	</button>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">Login with:</h4>
-			</div>
-			<div class="modal-body">
-				<a class="btn btn-facebook" href="#">
-					<i class="fa fa-facebook-square fa-lg"></i> Facebook
-				</a>
-				<a class="btn btn-github" href="{% url 'social:begin' backend='github' %}">
-					<i class="fa fa-github-square fe-github-square fa-lg"></i> Github
-				</a>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+	<h2>Sign in with...</h2>
+
+	<ul>
+		<li>
+			<a class="facebook" href="#">
+				<i class="fa fa-facebook-square fa-lg"></i> Facebook
+			</a>
+		</li>
+		<li>
+			<a class="twitter" href="#">
+				<i class="fa fa-twitter-square fa-lg"></i> Twitter
+			</a>
+		</li>
+		<li>
+			<a class="github" href="{% url 'social:begin' backend='github' %}">
+				<i class="fa fa-github-square fa-lg"></i> Github
+			</a>
+		</li>
+		<li class="guest-access">
+			<a class="guest" href="#">
+				...or as guest <i class="fa fa-child fa-lg"></i>
+			</a>
+		</li>
+	</ul>
 </div>
