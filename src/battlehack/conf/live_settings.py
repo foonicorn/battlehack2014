@@ -3,33 +3,39 @@ import os
 from battlehack.conf.global_settings import *
 
 
-VHOST_DIR = '/srv/battlehack-live'
-
 ALLOWED_HOSTS = [
-    'battlehack-live.moccu.com',
+    'chacha.cloudcontrolapp.com',
 ]
 
-SECRET_KEY = ''
+SECRET_KEY = 'asdkohwefsfaacadhfcfhopwiqc238y4wecqrweiourcnew'
 
 ADMINS = (
     ('admin', 'root@localhost'),
 )
 MANAGERS = ADMINS
 
-EMAIL_SUBJECT_PREFIX = '[battlehack-live] '
+f = os.environ['CRED_FILE']
+db_data = json.load(open(f))['MYSQLS']
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'battlehack_live',
-    }
+db_config = {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': db_data['MYSQLS_DATABASE'],
+    'USER': db_data['MYSQLS_USERNAME'],
+    'PASSWORD': db_data['MYSQLS_PASSWORD'],
+    'HOST': db_data['MYSQLS_HOSTNAME'],
+    'PORT': db_data['MYSQLS_PORT'],
 }
 
-STATIC_ROOT = os.path.normpath(os.path.join(VHOST_DIR, 'web', 'static'))
-MEDIA_ROOT = os.path.normpath(os.path.join(VHOST_DIR, 'web', 'media'))
+DATABASES = {
+    'default': db_config,
+}
 
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+STATIC_ROOT = os.path.normpath(os.path.join(ROOT_DIR, 'static'))
+MEDIA_ROOT = os.path.normpath(os.path.join(ROOT_DIR, 'media'))
+
+INSTALLED_APPS += (
+    'gunicorn',
+)
 
 # CACHES = {
 #     'default': {
@@ -39,46 +45,38 @@ COMPRESS_OFFLINE = True
 #     }
 # }
 
-LOGGING['handlers'].update({
-    'file': {
-        'level': 'DEBUG',
-        'class': 'logging.FileHandler',
-        'filename': os.path.normpath(os.path.join(VHOST_DIR, 'log', 'django.log')),
-        'formatter': 'verbose',
-    },
-    'file-celery': {
-        'level': 'DEBUG',
-        'class': 'logging.FileHandler',
-        'filename': os.path.normpath(os.path.join(VHOST_DIR, 'log', 'celery.log')),
-        'formatter': 'simple',
-    }
-})
+#LOGGING['handlers'].update({
+    #'file': {
+        #'level': 'DEBUG',
+        #'class': 'logging.FileHandler',
+        #'filename': os.path.normpath(os.path.join(VHOST_DIR, 'log', 'django.log')),
+        #'formatter': 'verbose',
+    #},
+    #'file-celery': {
+        #'level': 'DEBUG',
+        #'class': 'logging.FileHandler',
+        #'filename': os.path.normpath(os.path.join(VHOST_DIR, 'log', 'celery.log')),
+        #'formatter': 'simple',
+    #}
+#})
 
-LOGGING['loggers'] = {
-    'root': {
-        'level': 'WARNING',
-        'handlers': ['file', 'sentry'],
-    },
-    'celery': {
-        'level': 'INFO',
-        'handlers': ['file-celery', 'sentry'],
-    },
-    'battlehack': {
-        'level': 'WARNING',
-        'handlers': ['file', 'sentry'],
-        'propagate': True,
-    },
-    'django': {
-        'level': 'WARNING',
-        'handlers': ['file', 'sentry'],
-        'propagate': True,
-    },
-}
-
-# BROKER_URL = 'redis://localhost:6379/23'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/42'
-CELERY_ALWAYS_EAGER = False
-
-# RAVEN_CONFIG = {
-#     'dsn': 'https://xxx:xxx@sentry.moccu.com/xxx'  # noqa
-# }
+#LOGGING['loggers'] = {
+    #'root': {
+        #'level': 'WARNING',
+        #'handlers': ['file', 'sentry'],
+    #},
+    #'celery': {
+        #'level': 'INFO',
+        #'handlers': ['file-celery', 'sentry'],
+    #},
+    #'battlehack': {
+        #'level': 'WARNING',
+        #'handlers': ['file', 'sentry'],
+        #'propagate': True,
+    #},
+    #'django': {
+        #'level': 'WARNING',
+        #'handlers': ['file', 'sentry'],
+        #'propagate': True,
+    #},
+#}
