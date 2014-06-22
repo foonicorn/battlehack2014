@@ -1,7 +1,7 @@
 <div class="challenge-confirm">
-	Confirm the challenge!
+	{{ challenge.owner.user.username }} wants to invite you to a challenge.
 	<div class="decision">
-		<a href="#" class="yes"><i class="fa fa-thumbs-up fa-lg"></i></a>
+		<a href="{% url 'paypal:start' uuid=attendee.uuid %}" class="yes"><i class="fa fa-thumbs-up fa-lg"></i></a>
 		<a href="#" class="no"><i class="fa fa-thumbs-down fa-lg"></i></a>
 	</div>
 </div>
