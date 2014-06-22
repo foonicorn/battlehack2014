@@ -9,7 +9,11 @@
 	}
 
 	.decision {
-		margin-top: 20px;
+		margin: $grid-gutter 0;
+
+		form {
+			margin: 0 0 $grid-gutter;
+		}
 
 		a,
 		button {

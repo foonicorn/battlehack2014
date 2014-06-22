@@ -1,5 +1,6 @@
 %button {
 	@include border-radius($grid-gutter);
+	cursor: pointer;
 	border: 0;
 	border-top: 1px solid rgba(#ffffff, 0.5);
 	border-bottom: 1px solid rgba(#000000, 0.25);
@@ -12,7 +13,7 @@
 	min-width: 200px;
 }
 
-@mixin button($text-color: #ffffff, $background-color: $color-primary) {
+@mixin button($text-color: $color-text, $background-color: $color-primary) {
 	@extend %button;
 	background: $background-color;
 	color: $text-color;

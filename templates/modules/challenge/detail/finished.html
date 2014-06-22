@@ -11,7 +11,14 @@
 			<strong>{{ challenge.charity.name }}</strong>. Thank you very much!
 		{% else %}
 			<i class="smiley fa fa-smile-o fa-lg"></i>
-			You won the challenge, so you get your money back. Congratulations
+			You won the challenge, so you get your money back. Congratulations!
 		{% endif %}
 	</p>
+
+	{% if request.user.is_authenticated %}
+		<a href="{% url 'core:challenge_list' %}" class="back">
+			<span class="fa fa-chevron-left"></span>
+			Back to my challenges
+		</a>
+	{% endif %}
 </div>

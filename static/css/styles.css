@@ -1914,7 +1914,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
-.create-challenge .formfield-submit button, .authentication a, .challenge-confirm .yes,
+.create-challenge .formfield-submit button, .authentication a, .challenge-finished .back, .challenge-confirm .yes,
 .challenge-decision .yes, .challenge-confirm .no,
 .challenge-decision .no {
   -webkit-border-radius: 10px;
@@ -1922,6 +1922,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
+  cursor: pointer;
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -2306,7 +2307,7 @@ header h1:after {
 }
 .authentication a {
   background: #caff00;
-  color: white;
+  color: #6c6c6c;
 }
 .authentication a.facebook {
   background: #4c66a4;
@@ -2371,6 +2372,10 @@ header h1:after {
   margin-bottom: 20px;
   font-size: 5em;
 }
+.challenge-finished .back {
+  background: #caff00;
+  color: #6c6c6c;
+}
 
 .challenge-confirm .yes,
 .challenge-decision .yes {
@@ -2384,7 +2389,11 @@ header h1:after {
 }
 .challenge-confirm .decision,
 .challenge-decision .decision {
-  margin-top: 20px;
+  margin: 10px 0;
+}
+.challenge-confirm .decision form,
+.challenge-decision .decision form {
+  margin: 0 0 10px;
 }
 .challenge-confirm .decision a,
 .challenge-confirm .decision button,

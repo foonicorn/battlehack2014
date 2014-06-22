@@ -6,4 +6,8 @@
 		margin-bottom: $grid-gutter * 2;
 		font-size: 5em;
 	}
+
+	.back {
+		@include button();
+	}
 }

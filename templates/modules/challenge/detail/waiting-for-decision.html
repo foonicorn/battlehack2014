@@ -19,9 +19,13 @@
 
 		<p>
 			{% if attendee.opponent.status == 'pending' %}
-				Your opponent has not made a decision yet
+				Your opponent has not made a decision yet.
 			{% else %}
-				Your opponent said, that you are the {% if attendee.opponent.status == 'win' %}loser{% else %}winner{% endif %}
+				{% if attendee.opponent.status == 'win' %}
+					Your opponent claims the victory.
+				{% else %}
+					Your opponent gave up.
+				{% endif %}
 			{% endif %}
 		</p>
 	</div>
