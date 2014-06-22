@@ -2,6 +2,7 @@
 	<form method="post">
 		{% csrf_token %}
 		{% include "modules/generic/formfields/text.html" with field=form.title %}
+		{% include "modules/generic/formfields/text.html" with field=form.rival %}
 		{% include "modules/generic/formfields/textarea.html" with field=form.description %}
 		{% include "modules/generic/formfields/radio.html" with field=form.charity %}
 		{% include "modules/generic/formfields/text.html" with field=form.amount %}
