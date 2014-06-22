@@ -9,5 +9,6 @@ body {
 }
 
 .container {
+	@include grid-container();
 	padding: 38px 0 0 0;
 }
