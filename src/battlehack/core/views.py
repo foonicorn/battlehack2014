@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 
 from . import models, forms
+from .mail import send_rival_email
 from battlehack.paypal import api
 
 
@@ -57,7 +58,13 @@ class ChallengeCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(owner=self.request.user)
+        self.send_email()
         return HttpResponseRedirect(self.get_success_url())
+
+    def send_email(self):
+        path = reverse('core:challenge_detail', kwargs={'uuid': self.object.rival.uuid})
+        url = self.request.build_absolute_uri(path)
+        send_rival_email(self.object.rival.email, url)
 
     def get_success_url(self):
         uuid = self.object.owner.uuid

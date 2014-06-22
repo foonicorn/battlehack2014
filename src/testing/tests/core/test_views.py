@@ -1,6 +1,7 @@
 import pytest
 
 from django.core.urlresolvers import reverse
+from mock import patch
 
 from battlehack.core import views, models
 from testing.factories.factory_core import (
@@ -76,7 +77,8 @@ class TestChallengeCreate:
         response = views.challenge_create(request)
         assert response.status_code == 200
 
-    def test_post(self):
+    @patch('battlehack.core.views.send_rival_email')
+    def test_post(self, mock):
         user = UserFactory.create()
         charity = CharityFactory.create()
         data = {
@@ -91,6 +93,9 @@ class TestChallengeCreate:
         challenge = models.Challenge.objects.get(attendee__user=user)
         assert response.status_code == 302
         assert response['Location'] == '/paypal/start/{0}/'.format(challenge.owner.uuid)
+        expected_rival_url = '/challenges/{0}/'.format(challenge.rival.uuid)
+        assert mock.call_args[0][0] == 'rival@none.none'
+        assert mock.call_args[0][1].endswith(expected_rival_url)
 
 
 @pytest.mark.django_db

@@ -11,6 +11,8 @@ SECRET_KEY = 'testsecret01234567890'
 
 DEBUG = TEMPLATE_DEBUG = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
 if os.environ.get('JENKINS_URL', None) is not None:
     DATABASES = {
         'default': {
