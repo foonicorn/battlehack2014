@@ -1,18 +1,21 @@
 <ul class="list">
 	{% for item in list %}
 		<li>
-			<a href="{% url 'core:challenge_detail' pk=item.id %}" title="">
+			<a href="{% url 'core:challenge_detail' spk=item.spk %}" title="">
 				<span class="badge {{ object.status }}">
 					{% if object.status == 'win' %}
-						<i class="fa fa-thumbs-up"></i>
+						<i class="fa fa-thumbs-up fa-lg"></i>
 					{% elif object.status == 'loose' %}
-						<i class="fa fa-thumbs-down"></i>
+						<i class="fa fa-thumbs-down fa-lg"></i>
 					{% else %}
-						<i class="fa fa-clock-o"></i>
+						<i class="fa fa-clock-o fa-lg"></i>
 					{% endif %}
 					{{ item.amount }}€
 				</span>
-				<strong>{{ item.title }}</strong>
+				<strong>
+					<i class="fa fa-reply"></i>
+					{{ item.title }}
+				</strong>
 				<em>{{ item.description }}</em>
 			</a>
 		</li>
