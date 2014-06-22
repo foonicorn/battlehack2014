@@ -1,0 +1,28 @@
+.challenge-confirm,
+.challenge-decision {
+	.yes {
+		@include button($color-text, $color-stats);
+	}
+
+	.no {
+		@include button(#fff, $color-loose);
+	}
+
+	.decision {
+		margin-top: 20px;
+
+		a,
+		button {
+			@include inline-block();
+			width: 90px;
+			min-width: 0;
+			margin: 0 $grid-gutter;
+			font-size: 1em;
+		}
+
+		i {
+			@include inline-block();
+			font-size: 5em;
+		}
+	}
+}

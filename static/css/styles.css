@@ -1914,7 +1914,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
-.create-challenge .formfield-submit button, .authentication a {
+.create-challenge .formfield-submit button, .authentication a, .challenge-confirm .yes,
+.challenge-decision .yes, .challenge-confirm .no,
+.challenge-decision .no {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -2353,55 +2355,9 @@ header h1:after {
 .challenge-confirm {
   text-align: center;
 }
-.challenge-confirm .decision {
-  margin-top: 20px;
-}
-.challenge-confirm .decision a.yes {
-  margin-right: 10%;
-  color: #caff00;
-}
-.challenge-confirm .decision a.no {
-  margin-left: 10%;
-  color: #e80c4a;
-}
-.challenge-confirm .decision i {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  font-size: 5em;
-}
 
 .challenge-decision {
   text-align: center;
-}
-.challenge-decision .decision {
-  margin-top: 20px;
-}
-.challenge-decision .decision button {
-  background: none;
-  border: 0;
-  padding: 10px;
-  cursor: pointer;
-}
-.challenge-decision .decision .yes {
-  margin-right: 10%;
-  color: #caff00;
-}
-.challenge-decision .decision .no {
-  margin-left: 10%;
-  color: #e80c4a;
-}
-.challenge-decision .decision i {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  font-size: 5em;
 }
 
 .challenge-finished {
@@ -2410,5 +2366,45 @@ header h1:after {
 .challenge-finished i {
   display: block;
   margin-top: 20px;
+  font-size: 5em;
+}
+
+.challenge-confirm .yes,
+.challenge-decision .yes {
+  background: #caff00;
+  color: #6c6c6c;
+}
+.challenge-confirm .no,
+.challenge-decision .no {
+  background: #e80c4a;
+  color: white;
+}
+.challenge-confirm .decision,
+.challenge-decision .decision {
+  margin-top: 20px;
+}
+.challenge-confirm .decision a,
+.challenge-confirm .decision button,
+.challenge-decision .decision a,
+.challenge-decision .decision button {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 90px;
+  min-width: 0;
+  margin: 0 10px;
+  font-size: 1em;
+}
+.challenge-confirm .decision i,
+.challenge-decision .decision i {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
   font-size: 5em;
 }

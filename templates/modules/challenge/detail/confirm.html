@@ -1,7 +1,13 @@
 <div class="challenge-confirm">
-	{{ challenge.owner.user.username }} wants to invite you to a challenge.
+	<p>{{ challenge.owner.user.username }} wants to invite you to a challenge. Do you accept?</p>
 	<div class="decision">
-		<a href="{% url 'paypal:start' uuid=attendee.uuid %}" class="yes"><i class="fa fa-thumbs-up fa-lg"></i></a>
-		<a href="#" class="no"><i class="fa fa-thumbs-down fa-lg"></i></a>
+		<form method="post" action="{% url 'core:attendee_update' uuid=attendee.uuid %}">
+			<button type="submit" name="status" value="refuse" class="no">
+				<i class="fa fa-thumbs-down fa-lg"></i>
+			</button>
+			<a href="{% url 'paypal:start' uuid=attendee.uuid %}" class="yes">
+				<i class="fa fa-thumbs-up fa-lg"></i>
+			</a>
+		</form>
 	</div>
 </div>
