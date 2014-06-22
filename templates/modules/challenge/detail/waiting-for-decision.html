@@ -8,10 +8,10 @@
 		</form>
 
 		<p>
-			{% if challenge.rival.status == 'pending' %}
+			{% if attendee.opponent.status == 'pending' %}
 				Your opponent has not made a decision yet
 			{% else %}
-				Your opponent said, that you are the {% if challenge.rival.status == 'win' %}loser{% else %}winner{% endif %}
+				Your opponent said, that you are the {% if attendee.opponent.status == 'win' %}loser{% else %}winner{% endif %}
 			{% endif %}
 		</p>
 	</div>
