@@ -1,10 +1,18 @@
 <div class="challenge-decision">
-	Did you won the challenge?
+	Did you win the challenge?
 	<div class="decision">
 		<form method="post" action="{% url 'core:attendee_update' uuid=attendee.uuid %}">
 			{% csrf_token %}
 			<button type="submit" name="status" value="win" class="yes"><i class="fa fa-thumbs-up fa-lg"></i></button>
 			<button type="submit" name="status" value="loose" class="no"><i class="fa fa-thumbs-down fa-lg"></i></button>
 		</form>
+
+		<p>
+			{% if challenge.rival.status == 'pending' %}
+				Your opponent has not made a decision yet
+			{% else %}
+				Your opponent said, that you are the {% if challenge.rival.status == 'win' %}loser{% else %}winner{% endif %}
+			{% endif %}
+		</p>
 	</div>
 </div>
