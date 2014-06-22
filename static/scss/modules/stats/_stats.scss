@@ -24,7 +24,13 @@
 			@include inline-block();
 		}
 
+		dt {
+			float: left;
+			margin-right: 10px;
+		}
+
 		dd {
+			float: right;
 			font-weight: 600;
 		}
 

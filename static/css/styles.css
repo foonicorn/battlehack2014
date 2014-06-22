@@ -2193,7 +2193,12 @@ header h1:after {
   zoom: 1;
   *display: inline;
 }
+.stats .legend dt {
+  float: left;
+  margin-right: 10px;
+}
 .stats .legend dd {
+  float: right;
   font-weight: 600;
 }
 .stats .legend span {
