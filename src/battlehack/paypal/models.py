@@ -32,9 +32,8 @@ class Payment(models.Model):
         verbose_name = _('payment')
         verbose_name_plural = _('payments')
 
-    @property
     def get_create_url(self):
-        return reverse('paypal:start', kwart={'uuid': self.attendee.uuid})
+        return reverse('paypal:start', kwargs={'uuid': self.attendee.uuid})
 
     def __unicode__(self):
         return u'{0} / {1}'.format(self.attendee, self.pid)
