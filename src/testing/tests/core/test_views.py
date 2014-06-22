@@ -124,8 +124,9 @@ class TestAttendeeUpdate:
         assert response.context_data['form']
 
     def test_post(self):
-        owner = OwnerFactory.create()
-        RivalFactory.create(challenge=owner.challenge)
+        challenge = ChallengeFactory.create()
+        owner = OwnerFactory.create(challenge=challenge)
+        RivalFactory.create(challenge=challenge)
         data = {'status': 'win'}
         request = RequestFactory.post('/', data=data)
         response = views.attendee_update(request, uuid=owner.uuid)

@@ -4,6 +4,6 @@ from . import models
 
 
 class PaymentAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ('pid',)
 
 admin.site.register(models.Payment, PaymentAdmin)

@@ -3,6 +3,7 @@ import paypalrestsdk
 from django.core.urlresolvers import reverse
 
 from . import models
+from battlehack.core.models import Attendee
 
 
 def payment_start(payment, base_url):
@@ -55,8 +56,58 @@ def execute_payment(payment, payer_id):
     return paypal_payment
 
 
+def finish(owner, rival):
+    results = []
+    if owner.status == rival.status:
+        results.append(capture_payment(owner.payment))
+        results.append(capture_payment(rival.payment))
+    elif owner.status == Attendee.STATUS_LOOSE:
+        results.append(capture_payment(owner.payment))
+        results.append(void_payment(rival.payment))
+    elif rival.status == Attendee.STATUS_LOOSE:
+        results.append(capture_payment(rival.payment))
+        results.append(void_payment(owner.payment))
+    return all(results)
+
+
+def capture_payment(payment):
+    paypal_payment = paypalrestsdk.Payment.find(payment.pid)
+    authorization = get_authorization(paypal_payment)
+    result = authorization.capture({
+        'is_final_capture': True,
+        'amount': {
+            'currency': authorization.amount.currency,
+            'total': authorization.amount.total,
+        },
+    })
+    success = result.success()
+    if success:
+        payment.status = models.STATUS_CAPTURED
+        payment.save()
+    return success
+
+
+def void_payment(payment):
+    paypal_payment = paypalrestsdk.Payment.find(payment.pid)
+    authorization = get_authorization(paypal_payment)
+    success = authorization.void()
+    if success:
+        payment.status = models.STATUS_VOIDED
+        payment.save()
+    return success
+
+
 def get_approval_url(paypal_payment):
     for link in paypal_payment.links:
         if link.method == 'REDIRECT':
             return link.href
     raise Exception('No approval url found')
+
+
+def get_authorization(paypal_payment):
+    for transaction in paypal_payment.transactions:
+        for resource in transaction.related_resources:
+            if resource.authorization:
+                authorization_id = resource.authorization.id
+                return paypalrestsdk.Authorization.find(authorization_id)
+    raise Exception('No authorization found')

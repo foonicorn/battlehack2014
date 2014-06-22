@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 
 from . import models, forms
+from battlehack.paypal import api
 
 
 class IndexView(TemplateView):
@@ -88,8 +89,9 @@ class AttendeeUpdate(UpdateView):
 
     def form_valid(self, form):
         response = super(AttendeeUpdate, self).form_valid(form)
-        if not self.object.challenge.pending:
-            pass
+        challenge = self.object.challenge
+        if not challenge.pending:
+            api.finish(challenge.owner, challenge.rival)
         return response
 
     def get_success_url(self):

@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -30,6 +31,10 @@ class Payment(models.Model):
     class Meta:
         verbose_name = _('payment')
         verbose_name_plural = _('payments')
+
+    @property
+    def get_create_url(self):
+        return reverse('paypal:start', kwart={'uuid': self.attendee.uuid})
 
     def __unicode__(self):
         return u'{0} / {1}'.format(self.attendee, self.pid)

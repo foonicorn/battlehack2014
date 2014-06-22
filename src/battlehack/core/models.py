@@ -1,5 +1,6 @@
 import uuid
 
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -78,7 +79,10 @@ class Attendee(models.Model):
         unique_together = ('challenge', 'type')
 
     def __unicode__(self):
-        return self.user and self.user.username or self.email
+        return u'{0}: {1} [{2}]'.format(
+            self.type,
+            self.user and self.user.username or self.email,
+            self.status)
 
     @property
     def opponent(self):
@@ -86,6 +90,9 @@ class Attendee(models.Model):
             return self.challenge.rival
         else:
             return self.challenge.owner
+
+    def get_absolute_url(self):
+        return reverse('core:challenge_detail', kwargs={'uuid': self.uuid})
 
     def save(self, *args, **kwargs):
         if not self.uuid:
