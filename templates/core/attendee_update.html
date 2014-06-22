@@ -1,0 +1,5 @@
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		{% include "modules/generic/formfields/submit.html" with label="Submit" icon="fa-trophy" %}
+	</form>

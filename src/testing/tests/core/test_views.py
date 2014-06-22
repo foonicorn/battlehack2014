@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 from battlehack.core import views, models
 from testing.factories.factory_core import (
-    ChallengeFactory, CharityFactory, OwnerFactory)
+    ChallengeFactory, CharityFactory, OwnerFactory, RivalFactory)
 from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
 
@@ -105,5 +105,44 @@ class TestChallengeDetail:
         owner = OwnerFactory.create(challenge=challenge)
         request = RequestFactory.get('/')
         response = views.challenge_detail(request, uuid=owner.uuid)
+        assert response.status_code == 200
+        assert response.context_data['challenge'] == challenge
+
+
+@pytest.mark.django_db
+class TestAttendeeUpdate:
+
+    def test_url(self):
+        url = reverse('core:attendee_update', kwargs={'uuid': '1'})
+        assert url
+
+    def test_get(self):
+        owner = OwnerFactory.create()
+        request = RequestFactory.get('/')
+        response = views.attendee_update(request, uuid=owner.uuid)
+        assert response.status_code == 200
+        assert response.context_data['form']
+
+    def test_post(self):
+        owner = OwnerFactory.create()
+        RivalFactory.create(challenge=owner.challenge)
+        data = {'status': 'win'}
+        request = RequestFactory.post('/', data=data)
+        response = views.attendee_update(request, uuid=owner.uuid)
+        assert response.status_code == 302
+
+
+@pytest.mark.django_db
+class TestRivalStart:
+
+    def test_url(self):
+        url = reverse('core:rival_start', kwargs={'uuid': '1'})
+        assert url
+
+    def test_get(self):
+        challenge = ChallengeFactory.create()
+        rival = RivalFactory.create(challenge=challenge)
+        request = RequestFactory.get('/')
+        response = views.rival_start(request, uuid=rival.uuid)
         assert response.status_code == 200
         assert response.context_data['challenge'] == challenge

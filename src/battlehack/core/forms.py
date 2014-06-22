@@ -29,3 +29,10 @@ class ChallengeCreateForm(forms.ModelForm):
         Payment.objects.create(attendee=owner)
         Payment.objects.create(attendee=rival)
         return obj
+
+
+class AttendeeUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Attendee
+        fields = ('status',)

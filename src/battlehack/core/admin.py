@@ -13,3 +13,9 @@ class ChallengeAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(models.Challenge, ChallengeAdmin)
+
+
+class AttendeeAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(models.Attendee, AttendeeAdmin)

@@ -9,4 +9,6 @@ urlpatterns = patterns(
     url(r'^challenges/$', 'challenge_list', name='challenge_list'),
     url(r'^challenges/(?P<uuid>[\w\-]+)/$', 'challenge_detail', name='challenge_detail'),
     url(r'^create/$', 'challenge_create', name='challenge_create'),
+    url(r'^update/(?P<uuid>[\w\-]+)/$', 'attendee_update', name='attendee_update'),
+    url(r'^accept/(?P<uuid>[\w\-]+)/$', 'rival_start', name='rival_start'),
 )

@@ -17,7 +17,7 @@ class Charity(models.Model):
 
 class Challenge(models.Model):
     title = models.CharField(_('title'), max_length=100)
-    description = models.TextField(_('description'))
+    description = models.TextField(_('description'), max_length=127)
     charity = models.ForeignKey(Charity, verbose_name=_('charity'))
     amount = models.FloatField(_('amount'))
     date_created = models.DateTimeField(_('date created'), auto_now_add=True)
@@ -37,6 +37,12 @@ class Challenge(models.Model):
     @property
     def rival(self):
         return self.attendee_set.get(type=Attendee.TYPE_RIVAL)
+
+    @property
+    def pending(self):
+        return (
+            self.owner.status == Attendee.STATUS_PENDING or
+            self.rival.status == Attendee.STATUS_PENDING)
 
 
 class Attendee(models.Model):

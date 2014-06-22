@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, ListView, CreateView, DetailView, View
-from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 
 from . import models, forms
 
@@ -80,12 +79,26 @@ class ChallengeDetail(DetailView):
 challenge_detail = ChallengeDetail.as_view()
 
 
-class ChallengeUpdate(SingleObjectMixin, View):
-    model = models.Challenge
+class AttendeeUpdate(UpdateView):
+    model = models.Attendee
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
+    form_class = forms.AttendeeUpdateForm
+    template_name = 'core/attendee_update.html'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ChallengeDetail, self).dispatch(*args, **kwargs)
+    def form_valid(self, form):
+        response = super(AttendeeUpdate, self).form_valid(form)
+        if not self.object.challenge.pending:
+            pass
+        return response
 
-    def post(self, request, pk, type, *args, **kwargs):
-        return super(ChallengeUpdate, self).post(request, *args, **kwargs)
+    def get_success_url(self):
+        return reverse('core:challenge_detail', kwargs={'uuid': self.object.uuid})
+
+attendee_update = AttendeeUpdate.as_view()
+
+
+class RivalStart(ChallengeDetail):
+    template_name = 'core/rival_start.html'
+
+rival_start = RivalStart.as_view()
