@@ -74,6 +74,13 @@ class Attendee(models.Model):
     def __unicode__(self):
         return self.user and self.user.username or self.email
 
+    @property
+    def opponent(self):
+        if self.type == self.TYPE_OWNER:
+            return self.challenge.rival
+        else:
+            return self.challenge.owner
+
     def save(self, *args, **kwargs):
         if not self.uuid:
             self.uuid = uuid.uuid4()

@@ -1,4 +1,4 @@
-from testing.factories.factory_core import ChallengeFactory, AttendeeFactory
+from testing.factories.factory_core import ChallengeFactory, OwnerFactory, RivalFactory
 
 
 def test_challenge(db):
@@ -7,6 +7,10 @@ def test_challenge(db):
 
 
 def test_attendee(db):
-    attendee = AttendeeFactory()
-    assert attendee.challenge
-    assert attendee.uuid
+    challenge = ChallengeFactory.create()
+    owner = OwnerFactory(challenge=challenge)
+    rival = RivalFactory(challenge=challenge)
+    assert owner.challenge
+    assert owner.uuid
+    assert owner.opponent == rival
+    assert rival.opponent == owner
