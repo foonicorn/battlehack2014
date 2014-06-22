@@ -8,7 +8,7 @@
 			segmentShowStroke: false,
 			animateScale: true,
 			colors: [
-				'#a43668',
+				'#CAFF00',
 				'#FFF'
 			]
 		}
@@ -31,18 +31,20 @@
 			this._el
 				.find(SELECTOR_DATASET)
 				.each(function(index, set) {
-
 					set = $(set);
 					self._data.push({
 						color: self._options.colors[index],
 						value: parseInt(set.find(SELECTOR_DATAVALUE).text(), 10)
 					});
+
+					$('<span />')
+						.css({background: self._options.colors[index]})
+						.prependTo(set.find(SELECTOR_DATALABEL));
 				});
 		},
 
 		_render: function() {
-			this._el.find(SELECTOR_DATASET).hide();
-			this._canvas = $('<canvas width="100%" height="200" />').appendTo(this._el);
+			this._canvas = $('<canvas width="300" height="200" />').appendTo(this._el);
 			this._ctx = this._canvas.get(0).getContext('2d');
 			this._chart = new window.Chart(this._ctx).Pie(this._data, this._options);
 		}

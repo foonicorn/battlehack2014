@@ -1,9 +1,34 @@
 .stats {
 	@include box-shadow(inset 3px 3px 270px #000000);
+	position: relative;
 	margin: 0 0 $grid-gutter;
-	padding: $grid-gutter;
+	padding: $grid-gutter $grid-gutter ($grid-gutter * 6);
 	color: $color-stats-text;
 	text-align: center;
 	border-bottom: 1px solid rgba($color-primary, 0.5);
 	background: url("../img/default/tweed.png");
+
+	canvas {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.legend {
+		position: absolute;
+		bottom: $grid-gutter * 2;
+		right: $grid-gutter * 2;
+		text-align: right;
+
+		dt,
+		dd {
+			@include inline-block();
+		}
+
+		span {
+			@include inline-block();
+			margin: 0 $grid-gutter 0 0;
+			width: 10px;
+			height: 10px;
+		}
+	}
 }
