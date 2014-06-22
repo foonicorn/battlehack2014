@@ -4,7 +4,16 @@
 	li {
 		@include pie-clearfix();
 		padding: $grid-gutter;
-		border-bottom: 1px solid rgba($color-primary, 0.1);
+		border-top: 1px solid #ffffff;
+		border-bottom: 1px solid rgba($color-text, 0.1);
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
 	}
 
 	a {
@@ -25,9 +34,18 @@
 	.badge {
 		@include border-radius($grid-gutter * 2);
 		float: right;
-		padding: $grid-gutter * 0.5;
-		color: $color-text;
+		padding: ($grid-gutter * 0.5) $grid-gutter;
+		color: $color-stats-text;
 		font-size: 0.75em;
-		background: $color-primary;
+		background: $color-text;
+
+		&.win {
+			color: $color-text;
+			background: $color-primary;
+		}
+
+		&.loose {
+			background: $color-loose;
+		}
 	}
 }

@@ -62,7 +62,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-style: normal;
 }
 
-.fa {
+.fa, .create-challenge .formfield-radio .radio span {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -1079,7 +1079,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f10b";
 }
 
-.fa-circle-o:before {
+.fa-circle-o:before, .create-challenge .formfield-radio .radio span:before {
   content: "\f10c";
 }
 
@@ -1590,7 +1590,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f191";
 }
 
-.fa-dot-circle-o:before {
+.fa-dot-circle-o:before, .create-challenge .formfield-radio .radio .checked:before {
   content: "\f192";
 }
 
@@ -1914,6 +1914,102 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
+.create-challenge form {
+  padding: 20px 10px;
+}
+@media screen and (min-width: 960px) {
+  .create-challenge form {
+    padding: 40px;
+  }
+}
+.create-challenge label {
+  display: block;
+  margin: 10px 0 5px;
+}
+.create-challenge input[type="text"],
+.create-challenge input[type="email"],
+.create-challenge input[type="number"],
+.create-challenge textarea {
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
+  border-radius: 10px !important;
+  border: 3px solid #caff00;
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 10px !important;
+  outline: none;
+  font-size: 1em;
+}
+.create-challenge input[type="number"] {
+  padding: 0 10px !important;
+}
+.create-challenge textarea {
+  height: 150px;
+  max-width: 100%;
+}
+.create-challenge sub {
+  display: block;
+  margin-top: 5px;
+  color: #caff00;
+}
+.create-challenge .error span,
+.create-challenge .error input {
+  outline: 2px solid #caff00;
+}
+.create-challenge .formfield-radio {
+  margin: 10px 0;
+}
+.create-challenge .formfield-radio li {
+  margin: 5px 0;
+}
+.create-challenge .formfield-radio label {
+  position: relative;
+  padding: 4px 0 4px 25px;
+}
+.create-challenge .formfield-radio .radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.create-challenge .formfield-radio .radio span,
+.create-challenge .formfield-radio .radio input {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: #caff00;
+}
+.create-challenge .formfield-radio .radio span {
+  font-size: 1.5em;
+}
+.create-challenge .formfield-radio .radio input {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+.create-challenge .formfield-submit {
+  text-align: right;
+}
+.create-challenge .formfield-submit button {
+  background-color: #caff00;
+  border: none;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 16px;
+  outline: none;
+  margin-top: 10px;
+}
+.create-challenge .formfield-submit button i {
+  margin-right: 5px;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1985,7 +2081,10 @@ p {
   margin: 0 0 10px;
 }
 
-.list, .authentication {
+.create-challenge input[type="text"],
+.create-challenge input[type="email"],
+.create-challenge input[type="number"],
+.create-challenge textarea, .list, .authentication {
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -ms-border-radius: 10px 10px 0 0;
@@ -2069,7 +2168,7 @@ header h1:after {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  text-align: right;
+  text-align: left;
 }
 .stats .legend dt,
 .stats .legend dd {
@@ -2079,6 +2178,9 @@ header h1:after {
   *vertical-align: auto;
   zoom: 1;
   *display: inline;
+}
+.stats .legend dd {
+  font-weight: 600;
 }
 .stats .legend span {
   display: -moz-inline-stack;
@@ -2095,12 +2197,19 @@ header h1:after {
 .list li {
   *zoom: 1;
   padding: 10px;
-  border-bottom: 1px solid rgba(202, 255, 0, 0.1);
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid rgba(108, 108, 108, 0.1);
 }
 .list li:after {
   content: "";
   display: table;
   clear: both;
+}
+.list li:first-child {
+  border-top: 0;
+}
+.list li:last-child {
+  border-bottom: 0;
 }
 .list a {
   display: block;
@@ -2121,10 +2230,17 @@ header h1:after {
   -o-border-radius: 20px;
   border-radius: 20px;
   float: right;
-  padding: 5px;
-  color: #6c6c6c;
+  padding: 5px 10px;
+  color: white;
   font-size: 0.75em;
+  background: #6c6c6c;
+}
+.list .badge.win {
+  color: #6c6c6c;
   background: #caff00;
+}
+.list .badge.loose {
+  background: #e80c4a;
 }
 
 .authentication li {
@@ -2160,6 +2276,9 @@ header h1:after {
   background: #caff00;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  width: 50%;
+  margin: auto;
+  min-width: 200px;
 }
 .authentication a.facebook {
   background: #4c66a4;
@@ -2190,4 +2309,15 @@ header h1:after {
 .welcome h2,
 .welcome p {
   color: white;
+}
+
+.create-challenge {
+  width: 100%;
+  padding: 0 10px;
+}
+@media screen and (min-width: 700px) {
+  .create-challenge {
+    width: 700px;
+    margin: 0 auto;
+  }
 }

@@ -2,8 +2,14 @@
 	{% for item in list %}
 		<li>
 			<a href="{% url 'core:challenge_detail' pk=item.id %}" title="">
-				<span class="badge">
-					<i class="fa fa-thumbs-{{ forloop.counter|divisibleby:2|yesno:'down,up' }}"></i>
+				<span class="badge {{ object.status }}">
+					{% if object.status == 'win' %}
+						<i class="fa fa-thumbs-up"></i>
+					{% elif object.status == 'loose' %}
+						<i class="fa fa-thumbs-down"></i>
+					{% else %}
+						<i class="fa fa-clock-o"></i>
+					{% endif %}
 					{{ item.amount }}€
 				</span>
 				<strong>{{ item.title }}</strong>

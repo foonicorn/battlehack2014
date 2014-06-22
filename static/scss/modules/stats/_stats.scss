@@ -17,11 +17,15 @@
 		position: absolute;
 		bottom: $grid-gutter * 2;
 		right: $grid-gutter * 2;
-		text-align: right;
+		text-align: left;
 
 		dt,
 		dd {
 			@include inline-block();
+		}
+
+		dd {
+			font-weight: 600;
 		}
 
 		span {
