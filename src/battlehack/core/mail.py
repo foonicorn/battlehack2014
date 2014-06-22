@@ -12,4 +12,4 @@ def send_rival_email(to, url):
     ])
     send_mail(
         'Invitation to Cha+Cha',
-        msg, 'pappeldackel@googlemail.com', [to], fail_silently=False)
+        msg, 'andreas.hug@moccu.com', [to], fail_silently=False)

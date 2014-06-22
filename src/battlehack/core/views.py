@@ -1,6 +1,7 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
@@ -43,6 +44,17 @@ class ChallengeList(ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(ChallengeList, self).get_queryset(*args, **kwargs)
         return qs.filter(attendee__user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(ChallengeList, self).get_context_data(**kwargs)
+        context['owner_sum'] = models.Attendee.objects.filter(
+            user=self.request.user, status=models.Attendee.STATUS_WIN).aggregate(
+            owner_sum=Sum('challenge__amount'))['owner_sum'] or 0
+        context['rivals_sum'] = models.Attendee.objects.filter(
+            user=self.request.user, status=models.Attendee.STATUS_LOOSE).aggregate(
+            rivals_sum=Sum('challenge__amount'))['rivals_sum'] or 0
+        context['total_sum'] = context['rivals_sum'] + context['owner_sum']
+        return context
 
 challenge_list = ChallengeList.as_view()
 
