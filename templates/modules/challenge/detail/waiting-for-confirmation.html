@@ -1,4 +1,5 @@
 <div class="waiting">
-	Waiting for confirmation
-	<i class="fa fa-meh-o fa-lg"></i>
+	Thank you for starting a challenge. An email has been sent to your opponent.<br />
+	Stay tuned, to win your challenge.
+	<a href="{% url 'core:challenge_detail' uuid=attendee.opponent.uuid %}"><i class="fa fa-meh-o fa-lg"></i></a>
 </div>

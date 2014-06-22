@@ -2099,6 +2099,10 @@ p {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 .create-challenge input[type="text"],
 .create-challenge input[type="email"],
 .create-challenge input[type="number"],
