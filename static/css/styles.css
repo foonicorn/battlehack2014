@@ -1923,7 +1923,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 html
 body {
   background: #fcfcfc;
-  font-family: "Open Sans", sans-serif;
 }
 
 .container {
@@ -1943,6 +1942,9 @@ body {
 html,
 body {
   color: #6c6c6c;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 120%;
 }
 
@@ -2006,6 +2008,7 @@ header {
   padding: 10px;
   width: 100%;
   color: white;
+  font-size: 1.35em;
   background: #3A3A3A;
   border-bottom: 1px solid #caff00;
 }
