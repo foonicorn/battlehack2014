@@ -14,6 +14,11 @@ from battlehack.paypal import api
 class IndexView(TemplateView):
     template_name = 'core/index.html'
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect(reverse('core:challenge_list'))
+        return super(IndexView, self).get(request, *args, **kwargs)
+
 index = IndexView.as_view()
 
 
@@ -117,9 +122,3 @@ class AttendeeUpdate(UpdateView):
         return reverse('core:challenge_detail', kwargs={'uuid': self.object.uuid})
 
 attendee_update = AttendeeUpdate.as_view()
-
-
-class RivalStart(ChallengeDetail):
-    template_name = 'core/rival_start.html'
-
-rival_start = RivalStart.as_view()

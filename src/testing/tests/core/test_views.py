@@ -136,19 +136,3 @@ class TestAttendeeUpdate:
         request = RequestFactory.post('/', data=data)
         response = views.attendee_update(request, uuid=owner.uuid)
         assert response.status_code == 302
-
-
-@pytest.mark.django_db
-class TestRivalStart:
-
-    def test_url(self):
-        url = reverse('core:rival_start', kwargs={'uuid': '1'})
-        assert url
-
-    def test_get(self):
-        challenge = ChallengeFactory.create()
-        rival = RivalFactory.create(challenge=challenge)
-        request = RequestFactory.get('/')
-        response = views.rival_start(request, uuid=rival.uuid)
-        assert response.status_code == 200
-        assert response.context_data['challenge'] == challenge

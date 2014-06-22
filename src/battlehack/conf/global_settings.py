@@ -54,9 +54,9 @@ LOCALE_PATHS = (
     os.path.join(ROOT_DIR, 'templates/locale'),
 )
 
-LOGIN_URL = reverse_lazy('core:login')
+LOGIN_URL = reverse_lazy('core:index')
 LOGOUT_URL = reverse_lazy('core:logout')
-LOGIN_REDIRECT_URL = reverse_lazy('core:index')
+LOGIN_REDIRECT_URL = reverse_lazy('core:challenge_list')
 
 # Do not make the session and csrf cookie secure (https:// only)
 SESSION_COOKIE_SECURE = True
