@@ -60,3 +60,4 @@ dump.rdb
 # Project specific
 src/battlehack/settings.py
 db.sqlite
+credentials
