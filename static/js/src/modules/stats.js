@@ -34,7 +34,7 @@
 					set = $(set);
 					self._data.push({
 						color: self._options.colors[index],
-						value: parseInt(set.find(SELECTOR_DATAVALUE).text(), 10)
+						value: parseInt(set.find(SELECTOR_DATAVALUE).data('value'), 10)
 					});
 
 					$('<span />')
