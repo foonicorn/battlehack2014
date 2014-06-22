@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>{{ object.title }}</h2>
-	<p>{{ object.description }}</p>
+	{% include "modules/challenge/detail.html" with object=object %}
 {% endblock %}

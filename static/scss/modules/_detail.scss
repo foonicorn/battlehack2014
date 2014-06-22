@@ -1,0 +1,13 @@
+.challenge-detail {
+	@extend %content-box;
+
+	.waiting {
+		text-align: center;
+
+		i {
+			display: block;
+			margin-top: 20px;
+			font-size: 10em;
+		}
+	}
+}

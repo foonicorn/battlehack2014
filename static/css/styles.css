@@ -1914,6 +1914,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
+.create-challenge .formfield-submit button, .authentication a {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  min-width: 200px;
+}
+
 .create-challenge form {
   padding: 20px 10px;
 }
@@ -1935,13 +1953,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -ms-border-radius: 10px !important;
   -o-border-radius: 10px !important;
   border-radius: 10px !important;
-  border: 3px solid #caff00;
+  border: 1px solid #9f9f9f;
   display: block;
   width: 100%;
   height: 30px;
   padding: 10px !important;
   outline: none;
   font-size: 1em;
+  margin: 0 !important;
 }
 .create-challenge input[type="number"] {
   padding: 0 10px !important;
@@ -1983,7 +2002,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 0;
   width: 100%;
   height: 100%;
-  color: #caff00;
+  color: #6c6c6c;
 }
 .create-challenge .formfield-radio .radio span {
   font-size: 1.5em;
@@ -1996,14 +2015,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: right;
 }
 .create-challenge .formfield-submit button {
-  background-color: #caff00;
-  border: none;
-  cursor: pointer;
-  color: white;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  font-size: 16px;
-  outline: none;
+  background: #caff00;
+  color: #6c6c6c;
+  font-size: 1em;
   margin-top: 10px;
 }
 .create-challenge .formfield-submit button i {
@@ -2084,7 +2098,7 @@ p {
 .create-challenge input[type="text"],
 .create-challenge input[type="email"],
 .create-challenge input[type="number"],
-.create-challenge textarea, .list, .authentication {
+.create-challenge textarea, .list, .authentication, .create-challenge, .challenge-detail {
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -ms-border-radius: 10px 10px 0 0;
@@ -2263,22 +2277,8 @@ header h1:after {
   background: #6c6c6c;
 }
 .authentication a {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
-  display: block;
-  padding: 10px;
-  color: #ffffff;
-  text-decoration: none;
-  text-align: center;
   background: #caff00;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  width: 50%;
-  margin: auto;
-  min-width: 200px;
+  color: white;
 }
 .authentication a.facebook {
   background: #4c66a4;
@@ -2312,12 +2312,14 @@ header h1:after {
 }
 
 .create-challenge {
-  width: 100%;
-  padding: 0 10px;
+  margin-top: 20px;
 }
-@media screen and (min-width: 700px) {
-  .create-challenge {
-    width: 700px;
-    margin: 0 auto;
-  }
+
+.challenge-detail .waiting {
+  text-align: center;
+}
+.challenge-detail .waiting i {
+  display: block;
+  margin-top: 20px;
+  font-size: 10em;
 }

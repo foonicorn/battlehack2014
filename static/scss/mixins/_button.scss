@@ -1,0 +1,19 @@
+%button {
+	@include border-radius($grid-gutter);
+	border: 0;
+	border-top: 1px solid rgba(#ffffff, 0.5);
+	border-bottom: 1px solid rgba(#000000, 0.25);
+	display: block;
+	padding: $grid-gutter;
+	text-decoration: none;
+	text-align: center;
+	width: 50%;
+	margin: auto;
+	min-width: 200px;
+}
+
+@mixin button($text-color: #ffffff, $background-color: $color-primary) {
+	@extend %button;
+	background: $background-color;
+	color: $text-color;
+}

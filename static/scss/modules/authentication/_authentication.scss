@@ -24,18 +24,7 @@
 	}
 
 	a {
-		@include border-radius($grid-gutter);
-		display: block;
-		padding: $grid-gutter;
-		color: #ffffff;
-		text-decoration: none;
-		text-align: center;
-		background: $color-primary;
-		border-top: 1px solid rgba(#ffffff, 0.5);
-		border-bottom: 1px solid rgba(#000000, 0.25);
-		width: 50%;
-		margin: auto;
-		min-width: 200px;
+		@include button();
 
 		&.facebook {
 			background: #4c66a4;
