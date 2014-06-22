@@ -2307,7 +2307,7 @@ header h1:after {
 }
 .authentication a {
   background: #caff00;
-  color: #6c6c6c;
+  color: white;
 }
 .authentication a.facebook {
   background: #4c66a4;

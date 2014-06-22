@@ -24,7 +24,7 @@
 	}
 
 	a {
-		@include button();
+		@include button(#ffffff);
 
 		&.facebook {
 			background: #4c66a4;

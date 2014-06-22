@@ -1,4 +1,4 @@
-(function() {
+(function($) {
 
 	var
 		SELECTOR_DATASET = 'dl',
@@ -54,4 +54,4 @@
 	window.chacha = window.chacha || {};
 	window.chacha.StatsView = StatsView;
 
-})();
+})(window.jQuery);
