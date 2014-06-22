@@ -9,8 +9,8 @@ h2,
 h3,
 h4 {
 	position: relative;
-	margin: 0 0 $grid-gutter;
-	padding: $grid-gutter;
+	margin: 0 0 1em;
+	padding: $grid-gutter $grid-gutter 1em;
 	text-align: center;
 
 	&:after {

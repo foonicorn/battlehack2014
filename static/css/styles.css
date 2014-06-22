@@ -62,7 +62,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-style: normal;
 }
 
-.fa, .create-challenge .formfield-radio .radio span {
+.fa {
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -1079,7 +1079,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f10b";
 }
 
-.fa-circle-o:before, .create-challenge .formfield-radio .radio span:before {
+.fa-circle-o:before {
   content: "\f10c";
 }
 
@@ -1590,7 +1590,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f191";
 }
 
-.fa-dot-circle-o:before, .create-challenge .formfield-radio .radio .checked:before {
+.fa-dot-circle-o:before {
   content: "\f192";
 }
 
@@ -1914,105 +1914,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   content: "\f1e2";
 }
 
-<<<<<<< HEAD
-.create-challenge form {
-  padding: 20px 10px;
-}
-@media screen and (min-width: 960px) {
-  .create-challenge form {
-    padding: 40px;
-  }
-}
-.create-challenge label {
-  display: block;
-  margin: 10px 0 5px;
-}
-.create-challenge input[type="text"],
-.create-challenge input[type="email"],
-.create-challenge input[type="number"],
-.create-challenge textarea {
-  -webkit-border-radius: 10px !important;
-  -moz-border-radius: 10px !important;
-  -ms-border-radius: 10px !important;
-  -o-border-radius: 10px !important;
-  border-radius: 10px !important;
-  border: 3px solid #a43668;
-  display: block;
-  width: 100%;
-  height: 30px;
-  padding: 10px !important;
-  outline: none;
-  font-size: 1em;
-}
-.create-challenge input[type="number"] {
-  padding: 0 10px !important;
-}
-.create-challenge textarea {
-  height: 150px;
-  max-width: 100%;
-}
-.create-challenge sub {
-  display: block;
-  margin-top: 5px;
-  color: #a43668;
-}
-.create-challenge .error span,
-.create-challenge .error input {
-  outline: 2px solid #a43668;
-}
-.create-challenge .formfield-radio {
-  margin: 10px 0;
-}
-.create-challenge .formfield-radio li {
-  margin: 5px 0;
-}
-.create-challenge .formfield-radio label {
-  position: relative;
-  padding: 4px 0 4px 25px;
-}
-.create-challenge .formfield-radio .radio {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.create-challenge .formfield-radio .radio span,
-.create-challenge .formfield-radio .radio input {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  color: #a43668;
-}
-.create-challenge .formfield-radio .radio span {
-  font-size: 1.5em;
-}
-.create-challenge .formfield-radio .radio input {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-}
-.create-challenge .formfield-submit {
-  text-align: right;
-}
-.create-challenge .formfield-submit button {
-  background-color: #a43668;
-  border: none;
-  cursor: pointer;
-  color: white;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  font-size: 16px;
-  outline: none;
-  margin-top: 10px;
-}
-.create-challenge .formfield-submit button i {
-  margin-right: 5px;
-}
-
-=======
->>>>>>> Add authentication, add some typographic changes a.s.o.
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2026,7 +1927,17 @@ body {
 }
 
 .container {
+  *zoom: 1;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
   padding: 38px 0 0 0;
+}
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 html,
@@ -2040,8 +1951,8 @@ h2,
 h3,
 h4 {
   position: relative;
-  margin: 0 0 10px;
-  padding: 10px;
+  margin: 0 0 1em;
+  padding: 10px 10px 1em;
   text-align: center;
 }
 h1:after,
@@ -2056,7 +1967,7 @@ h4:after {
   margin: 0 0 0 -50px;
   width: 100px;
   height: 3px;
-  background: #a43668;
+  background: #caff00;
 }
 
 h2 {
@@ -2068,18 +1979,11 @@ a {
   color: #6c6c6c;
 }
 
-<<<<<<< HEAD
-.create-challenge input[type="text"],
-.create-challenge input[type="email"],
-.create-challenge input[type="number"],
-.create-challenge textarea, .list {
-=======
 p {
   margin: 0 0 10px;
 }
 
 .list, .authentication {
->>>>>>> Add authentication, add some typographic changes a.s.o.
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -ms-border-radius: 10px 10px 0 0;
@@ -2098,11 +2002,12 @@ header {
   box-shadow: black 0 1px 10px;
   *zoom: 1;
   position: fixed;
+  z-index: 1;
   padding: 10px;
   width: 100%;
   color: white;
   background: #3A3A3A;
-  border-bottom: 1px solid rgba(164, 54, 104, 0.5);
+  border-bottom: 1px solid #caff00;
 }
 header:after {
   content: "";
@@ -2113,7 +2018,7 @@ header h1 {
   float: left;
   margin: 0;
   padding: 0;
-  color: #d60464;
+  color: #caff00;
 }
 header h1:after {
   display: none;
@@ -2149,14 +2054,14 @@ header h1:after {
   padding: 10px;
   color: white;
   text-align: center;
-  border-bottom: 1px solid rgba(164, 54, 104, 0.5);
+  border-bottom: 1px solid rgba(202, 255, 0, 0.5);
   background: url("../img/default/tweed.png");
 }
 
 .list li {
   *zoom: 1;
   padding: 10px;
-  border-bottom: 1px solid rgba(164, 54, 104, 0.1);
+  border-bottom: 1px solid rgba(202, 255, 0, 0.1);
 }
 .list li:after {
   content: "";
@@ -2185,7 +2090,7 @@ header h1:after {
   padding: 5px;
   color: #ffffff;
   font-size: 0.75em;
-  background: #a43668;
+  background: #caff00;
 }
 
 .authentication li {
@@ -2193,8 +2098,8 @@ header h1:after {
 }
 .authentication li.guest-access {
   position: relative;
-  margin: 10px 0 0;
-  padding: 10px 0 0;
+  margin: 1em 0 0;
+  padding: 1em 0 0;
 }
 .authentication li.guest-access:before {
   content: "";
@@ -2218,7 +2123,7 @@ header h1:after {
   color: #ffffff;
   text-decoration: none;
   text-align: center;
-  background: #a43668;
+  background: #caff00;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
@@ -2245,7 +2150,7 @@ header h1:after {
   margin: 0 0 10px;
   padding: 30px;
   text-align: center;
-  border-bottom: 1px solid rgba(164, 54, 104, 0.5);
+  border-bottom: 3px solid #caff00;
   background: url("../img/default/tweed.png");
 }
 .welcome h2,
