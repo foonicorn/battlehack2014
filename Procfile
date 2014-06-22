@@ -1,1 +1,1 @@
-web: gunicorn encaustic.wsgi --workers=1 --timeout=60 -b 0.0.0.0:$PORT
+web: python src/manage.py run_gunicorn -b 0.0.0.0:$PORT
