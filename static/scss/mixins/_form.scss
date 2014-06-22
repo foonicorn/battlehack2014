@@ -43,9 +43,13 @@
 		color: $color-primary;
 	}
 
-	.error span,
 	.error input {
-		outline: 2px solid $color-primary;
+		color: #ffffff;
+		background: $color-loose;
+	}
+
+	.errorlist {
+		color: $color-loose;
 	}
 
 	.formfield-radio {

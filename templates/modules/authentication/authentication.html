@@ -18,10 +18,12 @@
 				<i class="fa fa-github-square fa-lg"></i> Github
 			</a>
 		</li>
-		<li class="guest-access">
-			<a class="guest" href="#">
-				...or as guest <i class="fa fa-child fa-lg"></i>
-			</a>
-		</li>
+		{% if guest_access_available %}
+			<li class="guest-access">
+				<a class="guest" href="#">
+					...or as guest <i class="fa fa-child fa-lg"></i>
+				</a>
+			</li>
+		{% endif %}
 	</ul>
 </div>

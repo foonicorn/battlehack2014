@@ -20,7 +20,13 @@
 	</head>
 	<body>
 		<header>
-			<h1>Cha<i class="fa fa-plus-square fa-lg"></i>Cha</h1>
+			<h1>
+				{% url 'core:login' as url_login %}
+				{% url 'core:challenge_list' as url_list %}
+				<a href="{% if request.user.is_authenticated %}{{ url_list }}{% else %}{{ url_login }}{% endif %} ">
+					Cha<i class="fa fa-plus-square fa-lg"></i>Cha
+				</a>
+			</h1>
 			{% include "modules/navigation/navigation.html" %}
 		</header>
 

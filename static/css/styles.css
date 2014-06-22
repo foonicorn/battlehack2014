@@ -1974,9 +1974,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin-top: 5px;
   color: #caff00;
 }
-.create-challenge .error span,
 .create-challenge .error input {
-  outline: 2px solid #caff00;
+  color: #ffffff;
+  background: #e80c4a;
+}
+.create-challenge .errorlist {
+  color: #e80c4a;
 }
 .create-challenge .formfield-radio {
   margin: 10px 0;
@@ -2093,6 +2096,7 @@ a {
 
 p {
   margin: 0 0 10px;
+  text-align: center;
 }
 
 .create-challenge input[type="text"],
@@ -2130,11 +2134,14 @@ header:after {
   display: table;
   clear: both;
 }
+header a {
+  color: #caff00;
+  text-decoration: none;
+}
 header h1 {
   float: left;
   margin: 0;
   padding: 0;
-  color: #caff00;
 }
 header h1:after {
   display: none;
@@ -2237,6 +2244,7 @@ header h1:after {
 .list strong {
   display: block;
   margin: 0 0 5px;
+  font-weight: 600;
 }
 .list em {
   display: block;

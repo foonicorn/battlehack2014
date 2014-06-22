@@ -10,11 +10,15 @@ header {
 	background: #3A3A3A;
 	border-bottom: 1px solid $color-primary;
 
+	a {
+		color: $color-primary;
+		text-decoration: none;
+	}
+
 	h1 {
 		float: left;
 		margin: 0;
 		padding: 0;
-		color: $color-primary;
 
 		&:after {
 			display: none;
