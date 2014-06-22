@@ -1,8 +1,7 @@
+import uuid
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from battlehack.paypal.models import Payment, TYPE_OWNER, TYPE_RIVAL
-from battlehack.utils.signing import sign
 
 
 class Charity(models.Model):
@@ -17,7 +16,6 @@ class Charity(models.Model):
 
 
 class Challenge(models.Model):
-    owner = models.ForeignKey('auth.User', verbose_name=_('owner'))
     title = models.CharField(_('title'), max_length=100)
     description = models.TextField(_('description'))
     charity = models.ForeignKey(Charity, verbose_name=_('charity'))
@@ -33,35 +31,50 @@ class Challenge(models.Model):
         return self.title
 
     @property
-    def owner_payment(self):
-        return self.payment_set.get(type=TYPE_OWNER)
+    def owner(self):
+        return self.attendee_set.get(type=Attendee.TYPE_OWNER)
 
     @property
-    def rival_payment(self):
-        return self.payment_set.get(type=TYPE_RIVAL)
-
-    @property
-    def spk(self):
-        return sign(self.pk)
-
-    def save(self, *args, **kwargs):
-        create_payments = (self.id is None)
-        result = super(Challenge, self).save(*args, **kwargs)
-        if create_payments:
-            Payment.objects.create(challenge=self, type=TYPE_OWNER)
-            Payment.objects.create(challenge=self, type=TYPE_RIVAL)
-        return result
+    def rival(self):
+        return self.attendee_set.get(type=Attendee.TYPE_RIVAL)
 
 
-class Rival(models.Model):
+class Attendee(models.Model):
+    TYPE_OWNER = 'owner'
+    TYPE_RIVAL = 'rival'
+    TYPE_CHOICES = (
+        (TYPE_OWNER, _('owner')),
+        (TYPE_RIVAL, _('rival')),
+    )
+
+    STATUS_PENDING = 'pending'
+    STATUS_WIN = 'win'
+    STATUS_LOOSE = 'loose'
+    STATUS_CHOICES = (
+        (STATUS_PENDING, _('pending')),
+        (STATUS_WIN, _('win')),
+        (STATUS_LOOSE, _('loose')),
+    )
+
     challenge = models.ForeignKey(Challenge, verbose_name=_('challenge'))
-    email = models.EmailField(_('email'))
+    uuid = models.CharField(_('uuid'), max_length=255)
+    email = models.EmailField(_('email'), blank=True)
     user = models.ForeignKey(
         'auth.User', verbose_name=_('user'), blank=True, null=True)
+    type = models.CharField(_('type'), max_length=20, choices=TYPE_CHOICES)
+    status = models.CharField(
+        _('status'), max_length=20,
+        choices=STATUS_CHOICES, default=STATUS_PENDING)
 
     class Meta:
-        verbose_name = _('rival')
-        verbose_name_plural = _('rivals')
+        verbose_name = _('attendee')
+        verbose_name_plural = _('attendee')
+        unique_together = ('challenge', 'type')
 
     def __unicode__(self):
-        return self.email
+        return self.user and self.user.username or self.email
+
+    def save(self, *args, **kwargs):
+        if not self.uuid:
+            self.uuid = uuid.uuid4()
+        super(Attendee, self).save(*args, **kwargs)

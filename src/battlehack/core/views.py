@@ -7,8 +7,6 @@ from django.views.generic import TemplateView, ListView, CreateView, DetailView,
 from django.views.generic.detail import SingleObjectMixin
 
 from . import models, forms
-from battlehack.paypal.models import Payment, TYPE_OWNER
-from battlehack.utils.signing import unsign
 
 
 class IndexView(TemplateView):
@@ -43,7 +41,7 @@ class ChallengeList(ListView):
 
     def get_queryset(self, *args, **kwargs):
         qs = super(ChallengeList, self).get_queryset(*args, **kwargs)
-        return qs.filter(owner=self.request.user)
+        return qs.filter(attendee__user=self.request.user)
 
 challenge_list = ChallengeList.as_view()
 
@@ -59,22 +57,25 @@ class ChallengeCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(owner=self.request.user)
-        payment = Payment.objects.get(challenge=self.object, type=TYPE_OWNER)
-        return HttpResponseRedirect(self.get_success_url(payment))
+        return HttpResponseRedirect(self.get_success_url())
 
-    def get_success_url(self, payment):
-        return reverse('paypal:start', kwargs={'spk': payment.spk})
+    def get_success_url(self):
+        uuid = self.object.owner.uuid
+        return reverse('paypal:start', kwargs={'uuid': uuid})
 
 challenge_create = ChallengeCreate.as_view()
 
 
 class ChallengeDetail(DetailView):
-    model = models.Challenge
+    model = models.Attendee
     template_name = 'core/challenge_detail.html'
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'
 
-    def get(self, request, spk, *args, **kwargs):
-        self.kwargs['pk'] = unsign(spk)
-        return super(ChallengeDetail, self).get(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(ChallengeDetail, self).get_context_data(**kwargs)
+        context['challenge'] = self.object.challenge
+        return context
 
 challenge_detail = ChallengeDetail.as_view()
 

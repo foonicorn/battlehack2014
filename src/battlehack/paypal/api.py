@@ -10,7 +10,7 @@ def payment_start(payment, base_url):
         raise Exception('Wrong payment status')
 
     base_url = base_url.strip('/')
-    return_url = base_url + reverse('paypal:success', kwargs={'payment_pk': payment.pk})
+    return_url = base_url + reverse('paypal:success', kwargs={'uuid': payment.attendee.uuid})
 
     paypal_payment = paypalrestsdk.Payment({
         'intent': 'authorize',
@@ -23,10 +23,10 @@ def payment_start(payment, base_url):
         },
         'transactions': [{
             'amount': {
-                'total': '{0:.2f}'.format(payment.challenge.amount),
+                'total': '{0:.2f}'.format(payment.attendee.challenge.amount),
                 'currency': 'EUR'
             },
-            'description': payment.challenge.description
+            'description': payment.attendee.challenge.description
         }]
     })
 

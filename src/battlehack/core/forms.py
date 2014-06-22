@@ -1,6 +1,7 @@
 from django import forms
 
 from . import models
+from battlehack.paypal.models import Payment
 
 
 class ChallengeCreateForm(forms.ModelForm):
@@ -16,9 +17,15 @@ class ChallengeCreateForm(forms.ModelForm):
         self.fields['charity'].empty_label = None
 
     def save(self, owner, commit=True):
-        obj = super(ChallengeCreateForm, self).save(commit=False)
-        obj.owner = owner
-        obj.save()
-        models.Rival.objects.create(
-            challenge=obj, email=self.cleaned_data['rival'])
+        obj = super(ChallengeCreateForm, self).save(commit=True)
+        owner = models.Attendee.objects.create(
+            challenge=obj,
+            type=models.Attendee.TYPE_OWNER,
+            user=owner)
+        rival = models.Attendee.objects.create(
+            challenge=obj,
+            type=models.Attendee.TYPE_RIVAL,
+            email=self.cleaned_data['rival'])
+        Payment.objects.create(attendee=owner)
+        Payment.objects.create(attendee=rival)
         return obj

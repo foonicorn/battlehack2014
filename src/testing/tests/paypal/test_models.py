@@ -1,7 +1,6 @@
-from testing.factories.factory_core import ChallengeFactory
+from testing.factories.factory_paypal import PaymentFactory
 
 
 def test_payment(db):
-    challenge = ChallengeFactory.create()
-    assert challenge.owner_payment
-    assert challenge.rival_payment
+    payment = PaymentFactory.create()
+    assert payment.attendee

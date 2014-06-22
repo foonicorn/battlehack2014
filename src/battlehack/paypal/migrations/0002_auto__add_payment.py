@@ -8,15 +8,21 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Challenge.owner'
-        db.add_column(u'core_challenge', 'owner',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['auth.User']),
-                      keep_default=False)
+        # Adding model 'Payment'
+        db.create_table(u'paypal_payment', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('attendee', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.Attendee'], unique=True)),
+            ('pid', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
+            ('status', self.gf('django.db.models.fields.CharField')(default='initiated', max_length=20)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+        ))
+        db.send_create_signal(u'paypal', ['Payment'])
 
 
     def backwards(self, orm):
-        # Deleting field 'Challenge.owner'
-        db.delete_column(u'core_challenge', 'owner_id')
+        # Deleting model 'Payment'
+        db.delete_table(u'paypal_payment')
 
 
     models = {
@@ -56,6 +62,16 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        u'core.attendee': {
+            'Meta': {'unique_together': "(('challenge', 'type'),)", 'object_name': 'Attendee'},
+            'challenge': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Challenge']"}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'status': ('django.db.models.fields.CharField', [], {'default': "'pending'", 'max_length': '20'}),
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True', 'blank': 'True'}),
+            'uuid': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+        },
         u'core.challenge': {
             'Meta': {'object_name': 'Challenge'},
             'amount': ('django.db.models.fields.FloatField', [], {}),
@@ -64,14 +80,22 @@ class Migration(SchemaMigration):
             'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         u'core.charity': {
             'Meta': {'object_name': 'Charity'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        u'paypal.payment': {
+            'Meta': {'object_name': 'Payment'},
+            'attendee': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['core.Attendee']", 'unique': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'pid': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
+            'status': ('django.db.models.fields.CharField', [], {'default': "'initiated'", 'max_length': '20'})
         }
     }
 
-    complete_apps = ['core']
+    complete_apps = ['paypal']

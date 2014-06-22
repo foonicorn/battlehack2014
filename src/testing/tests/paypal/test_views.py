@@ -4,8 +4,9 @@ from django.core.urlresolvers import reverse
 from mock import patch, Mock
 
 from battlehack.paypal import views
-from testing.factories.factory_core import ChallengeFactory
+from testing.factories.factory_core import ChallengeFactory, OwnerFactory
 from testing.factories.factory_request import RequestFactory
+from testing.factories.factory_paypal import PaymentFactory
 
 
 def paypal_start_payment_factory():
@@ -21,16 +22,17 @@ def paypal_start_payment_factory():
 class TestPaypalStart:
 
     def test_url(self):
-        url = reverse('paypal:start', kwargs={'spk': '1.X'})
-        assert url == '/paypal/start/1.X/'
+        url = reverse('paypal:start', kwargs={'uuid': '1'})
+        assert url == '/paypal/start/1/'
 
     @patch('battlehack.paypal.views.PaypalStart.start_payment')
     def test_get(self, mock):
         mock.return_value = paypal_start_payment_factory()
         challenge = ChallengeFactory.create()
-        payment = challenge.rival_payment
+        owner = OwnerFactory(challenge=challenge)
+        payment = PaymentFactory.create(attendee=owner)
         request = RequestFactory.get('/')
-        response = views.start(request, spk=payment.spk)
+        response = views.start(request, uuid=payment.attendee.uuid)
         mock.assert_called_with(payment)
         assert response.status_code == 302
         assert response['Location'] == '/paypal/'
@@ -40,14 +42,13 @@ class TestPaypalStart:
 class TestPaypalSuccess:
 
     def test_url(self):
-        url = reverse('paypal:success', kwargs={'spk': '1.X'})
+        url = reverse('paypal:success', kwargs={'uuid': '1'})
         assert url
 
     @patch('battlehack.paypal.views.PaypalSuccess.execute_payment')
     def test_get(self, mock):
-        challenge = ChallengeFactory.create()
-        payment = challenge.rival_payment
+        payment = PaymentFactory.create()
         request = RequestFactory.get('/', data={'PayerID': 'ABC'})
-        response = views.success(request, spk=payment.spk)
+        response = views.success(request, uuid=payment.attendee.uuid)
         assert response.status_code == 302
-        assert response['Location'] == '/challenges/{0}/'.format(payment.challenge.spk)
+        assert response['Location'] == '/challenges/{0}/'.format(payment.attendee.uuid)

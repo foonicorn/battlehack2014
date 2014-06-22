@@ -1,5 +1,5 @@
 from battlehack.core.forms import ChallengeCreateForm
-from battlehack.core.models import Challenge, Rival
+from battlehack.core.models import Challenge
 from testing.factories.factory_core import CharityFactory
 from testing.factories.factory_user import UserFactory
 
@@ -17,6 +17,5 @@ def test_save_form(db):
     form = ChallengeCreateForm(data)
     obj = form.save(user)
     challenge = Challenge.objects.get(id=obj.id)
-    assert challenge.owner == user
-    rival = Rival.objects.get(challenge=challenge)
-    assert rival.email == 'rival@none.none'
+    assert challenge.owner.user == user
+    assert challenge.rival.email == 'rival@none.none'

@@ -5,15 +5,13 @@ from django.views.generic import RedirectView
 
 from . import api
 from .models import Payment
-from battlehack.utils.signing import unsign
 
 
 class PaypalStart(RedirectView):
     permanent = False
 
-    def get(self, request, spk, *args, **kwargs):
-        pk = unsign(spk)
-        payment = get_object_or_404(Payment, pk=pk)
+    def get(self, request, uuid, *args, **kwargs):
+        payment = get_object_or_404(Payment, attendee__uuid=uuid)
         paypal_payment = self.start_payment(payment)
         redirect_url = self.get_redirect_url(paypal_payment)
         return HttpResponseRedirect(redirect_url)
@@ -32,20 +30,18 @@ start = PaypalStart.as_view()
 class PaypalSuccess(RedirectView):
     permanent = False
 
-    def get(self, request, spk, *args, **kwargs):
-        pk = unsign(spk)
+    def get(self, request, uuid, *args, **kwargs):
         payer_id = self.request.GET.get('PayerID')
         if not payer_id:
             raise Http404('No PayerID')
-        self.payment = get_object_or_404(Payment, pk=pk)
+        self.payment = get_object_or_404(Payment, attendee__uuid=uuid)
         self.execute_payment(self.payment, payer_id)
-        return super(PaypalSuccess, self).get(request, *args, **kwargs)
+        return super(PaypalSuccess, self).get(request, uuid, *args, **kwargs)
 
     def execute_payment(self, payment, payer_id):
         api.execute_payment(payment, payer_id)
 
-    def get_redirect_url(self):
-        challenge_spk = self.payment.challenge.spk
-        return reverse('core:challenge_detail', kwargs={'spk': challenge_spk})
+    def get_redirect_url(self, uuid):
+        return reverse('core:challenge_detail', kwargs={'uuid': uuid})
 
 success = PaypalSuccess.as_view()

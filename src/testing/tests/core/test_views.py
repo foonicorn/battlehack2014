@@ -3,8 +3,8 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from battlehack.core import views, models
-from battlehack.paypal.models import Payment, TYPE_OWNER, TYPE_RIVAL
-from testing.factories.factory_core import ChallengeFactory, CharityFactory
+from testing.factories.factory_core import (
+    ChallengeFactory, CharityFactory, OwnerFactory)
 from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
 
@@ -41,7 +41,8 @@ class TestChallengeList:
 
     def test_get_owner(self):
         challenge = ChallengeFactory.create()
-        request = RequestFactory.get('/', user=challenge.owner)
+        OwnerFactory.create(challenge=challenge)
+        request = RequestFactory.get('/', user=challenge.owner.user)
         response = views.challenge_list(request)
         assert response.status_code == 200
         assert challenge in response.context_data['object_list']
@@ -87,25 +88,22 @@ class TestChallengeCreate:
         }
         request = RequestFactory.post('/', user=user, data=data)
         response = views.challenge_create(request)
-        challenge = models.Challenge.objects.get(owner=user)
+        challenge = models.Challenge.objects.get(attendee__user=user)
         assert response.status_code == 302
-        owner_payment = Payment.objects.get(challenge=challenge, type=TYPE_OWNER)
-        rival_payment = Payment.objects.get(challenge=challenge, type=TYPE_RIVAL)
-        assert owner_payment
-        assert rival_payment
-        assert response['Location'] == '/paypal/start/{0}/'.format(owner_payment.spk)
+        assert response['Location'] == '/paypal/start/{0}/'.format(challenge.owner.uuid)
 
 
 @pytest.mark.django_db
 class TestChallengeDetail:
 
     def test_url(self):
-        url = reverse('core:challenge_detail', kwargs={'spk': '1.X'})
+        url = reverse('core:challenge_detail', kwargs={'uuid': '1'})
         assert url
 
     def test_get(self):
         challenge = ChallengeFactory.create()
+        owner = OwnerFactory.create(challenge=challenge)
         request = RequestFactory.get('/')
-        response = views.challenge_detail(request, spk=challenge.spk)
+        response = views.challenge_detail(request, uuid=owner.uuid)
         assert response.status_code == 200
-        assert response.context_data['object'] == challenge
+        assert response.context_data['challenge'] == challenge
