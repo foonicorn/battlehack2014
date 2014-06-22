@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from battlehack.paypal.models import Payment, TYPE_OWNER, TYPE_RIVAL
+from battlehack.utils.signing import sign
 
 
 class Charity(models.Model):
@@ -38,6 +39,10 @@ class Challenge(models.Model):
     @property
     def rival_payment(self):
         return self.payment_set.get(type=TYPE_RIVAL)
+
+    @property
+    def spk(self):
+        return sign(self.pk)
 
     def save(self, *args, **kwargs):
         create_payments = (self.id is None)

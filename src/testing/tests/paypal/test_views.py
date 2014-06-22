@@ -21,8 +21,8 @@ def paypal_start_payment_factory():
 class TestPaypalStart:
 
     def test_url(self):
-        url = reverse('paypal:start', kwargs={'payment_pk': 1})
-        assert url == '/paypal/start/1/'
+        url = reverse('paypal:start', kwargs={'spk': '1.X'})
+        assert url == '/paypal/start/1.X/'
 
     @patch('battlehack.paypal.views.PaypalStart.start_payment')
     def test_get(self, mock):
@@ -30,7 +30,7 @@ class TestPaypalStart:
         challenge = ChallengeFactory.create()
         payment = challenge.rival_payment
         request = RequestFactory.get('/')
-        response = views.start(request, payment_pk=payment.pk)
+        response = views.start(request, spk=payment.spk)
         mock.assert_called_with(payment)
         assert response.status_code == 302
         assert response['Location'] == '/paypal/'
@@ -40,7 +40,7 @@ class TestPaypalStart:
 class TestPaypalSuccess:
 
     def test_url(self):
-        url = reverse('paypal:success', kwargs={'payment_pk': 1})
+        url = reverse('paypal:success', kwargs={'spk': '1.X'})
         assert url
 
     @patch('battlehack.paypal.views.PaypalSuccess.execute_payment')
@@ -48,6 +48,6 @@ class TestPaypalSuccess:
         challenge = ChallengeFactory.create()
         payment = challenge.rival_payment
         request = RequestFactory.get('/', data={'PayerID': 'ABC'})
-        response = views.success(request, payment_pk=payment.pk)
+        response = views.success(request, spk=payment.spk)
         assert response.status_code == 302
-        assert response['Location'] == '/challenges/{0}/'.format(payment.challenge.pk)
+        assert response['Location'] == '/challenges/{0}/'.format(payment.challenge.spk)

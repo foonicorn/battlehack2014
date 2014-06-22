@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from battlehack.utils.signing import sign
+
 
 TYPE_OWNER = 'owner'
 TYPE_RIVAL = 'rival'
@@ -42,3 +44,7 @@ class Payment(models.Model):
 
     def __unicode__(self):
         return u'{0} / {1}'.format(self.type, self.pid)
+
+    @property
+    def spk(self):
+        return sign(self.pk)
