@@ -1,0 +1,10 @@
+<div class="challenge-decision">
+	Did you won the challenge?
+	<div class="decision">
+		<form method="post" action="{% url 'core:attendee_update' uuid=attendee.uuid %}">
+			{% csrf_token %}
+			<button type="submit" name="status" value="win" class="yes"><i class="fa fa-thumbs-up fa-lg"></i></button>
+			<button type="submit" name="status" value="loose" class="no"><i class="fa fa-thumbs-down fa-lg"></i></button>
+		</form>
+	</div>
+</div>

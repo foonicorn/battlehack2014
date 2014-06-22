@@ -1,0 +1,23 @@
+.challenge-confirm {
+	text-align: center;
+
+	.decision {
+		margin-top: 20px;
+
+		a.yes {
+			margin-right: 10%;
+			color: $color-stats;
+		}
+
+		a.no {
+			margin-left: 10%;
+			color: $color-loose;
+		}
+
+		i {
+			@include inline-block();
+			font-size: 5em;
+		}
+	}
+
+}

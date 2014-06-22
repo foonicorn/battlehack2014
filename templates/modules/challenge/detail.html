@@ -1,9 +1,18 @@
 <div class="challenge-detail">
-	<h2>{{ object.title }}</h2>
-	<p>{{ object.description }}</p>
+	<h2>{{ challenge.title }}</h2>
+	<div class="challenge-info">
+		<p>{{ challenge.description }}</p>
 
-	<div class="waiting">
-		Waiting for confirmation
-		<i class="fa fa-meh-o fa-lg"></i>
+		{% if challenge.rival.payment.status == 'initiated' %}
+			{% if attendee.type == 'owner'%}
+				{% include "modules/challenge/detail/waiting-for-confirmation.html" %}
+			{% else %}
+				{% include "modules/challenge/detail/confirm.html" %}
+			{% endif %}
+		{% elif challenge.rival.status == 'pending' or challenge.owner.status == 'pending' %}
+			{% include "modules/challenge/detail/waiting-for-decision.html" %}
+		{% else %}
+			{% include "modules/challenge/detail/finished.html" %}
+		{% endif %}
 	</div>
 </div>

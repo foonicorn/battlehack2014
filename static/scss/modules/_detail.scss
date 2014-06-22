@@ -1,5 +1,9 @@
 .challenge-detail {
-	@extend %content-box;
+	padding-top: 20px;
+
+	.challenge-info {
+		@extend %content-box;
+	}
 
 	.waiting {
 		text-align: center;

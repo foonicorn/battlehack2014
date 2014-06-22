@@ -1,0 +1,17 @@
+<div class="challenge-finished">
+	The challenge has finished!
+	<p>
+		{% if challenge.rival.status == challenge.owner.status %}
+			Both challengers select the same status, so now your money will
+			spend to the charity. Thank you very much!
+			<i class="fa fa-frown-o fa-lg"></i>
+		{% elif attendee.status == 'loose' %}
+			You lose this challenge, so now your money will spend to the
+			Charity. Thank you very much!
+			<i class="fa fa-frown-o fa-lg"></i>
+		{% else %}
+			You won the challenge, so you get your money back. Congratulations
+			<i class="fa fa-smile-o fa-lg"></i>
+		{% endif %}
+	</p>
+</div>
