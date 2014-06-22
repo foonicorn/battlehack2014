@@ -32,4 +32,4 @@ class Payment(models.Model):
         verbose_name_plural = _('payments')
 
     def __unicode__(self):
-        return u'{0} / {1}'.format(self.type, self.pid)
+        return u'{0} / {1}'.format(self.attendee, self.pid)
