@@ -2,8 +2,8 @@
 	@include border-radius($grid-gutter);
 	cursor: pointer;
 	border: 0;
-	border-top: 1px solid rgba(#ffffff, 0.5);
-	border-bottom: 1px solid rgba(#000000, 0.25);
+	border-top: 1px solid rgba($color-light, 0.5);
+	border-bottom: 1px solid rgba($color-shadow, 0.25);
 	display: block;
 	padding: $grid-gutter;
 	text-decoration: none;

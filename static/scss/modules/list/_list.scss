@@ -4,7 +4,7 @@
 	li {
 		@include pie-clearfix();
 		padding: $grid-gutter;
-		border-top: 1px solid #ffffff;
+		border-top: 1px solid $color-light;
 		border-bottom: 1px solid rgba($color-text, 0.1);
 
 		&:first-child {

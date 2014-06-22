@@ -5,7 +5,7 @@
 	}
 
 	.no {
-		@include button(#fff, $color-loose);
+		@include button($color-light, $color-loose);
 	}
 
 	.decision {

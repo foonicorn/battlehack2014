@@ -24,7 +24,7 @@
 	}
 
 	a {
-		@include button(#ffffff);
+		@include button($color-light);
 
 		&.facebook {
 			background: #4c66a4;
@@ -35,7 +35,7 @@
 		}
 
 		&.github {
-			color: #3A3A3A;
+			color: #3a3a3a;
 			background: #f3f3f3;
 		}
 

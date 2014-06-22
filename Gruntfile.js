@@ -26,6 +26,6 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'build',
 		'Build all JS files for a deploy.',
-		['validate', 'test', 'requirejs', 'clean']
+		['validate', 'test']
 	);
 };

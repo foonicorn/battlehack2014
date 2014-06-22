@@ -1,5 +1,5 @@
 .stats {
-	@include box-shadow(inset 3px 3px 270px #000000);
+	@include box-shadow(inset 3px 3px 270px $color-shadow);
 	position: relative;
 	margin: 0 0 $grid-gutter;
 	padding: $grid-gutter $grid-gutter ($grid-gutter * 6);

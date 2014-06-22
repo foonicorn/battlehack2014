@@ -3,15 +3,17 @@ $grid-columns: 12;
 $grid-gutter: 10px;
 $grid-break: 700px;
 
-$color-primary: #CAFF00;
-$color-secondary: #D60464;
-$color-tertiary: #F1928F;
-$color-background: #FCFCFC;
+$color-primary: #caff00;
+$color-secondary: #d60464;
+$color-tertiary: #f1928f;
+$color-background: #fcfcfc;
 
-$color-loose: #E80C4A;
+$color-light: #fff;
+$color-shadow: #000;
+$color-loose: #e80c4a;
 $color-highlight: #590230;
-$color-text: #6C6C6C;
-$color-navigation-text: #ffffff;
+$color-text: #6c6c6c;
+$color-header: #3a3a3a;
+$color-navigation-text: $color-light;
 $color-stats: $color-primary;
-$color-stats-text: #ffffff;
-$color-shadow: #000000;
+$color-stats-text: $color-light;

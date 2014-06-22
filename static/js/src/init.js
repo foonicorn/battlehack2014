@@ -1,4 +1,4 @@
-(function() {
+(function($) {
 
 	$('.stats').each(function() {
 		new window.chacha.StatsView({
@@ -7,7 +7,7 @@
 	});
 
 	$('input[type=radio]').uniform({
-		radioClass: "radio"
+		radioClass: 'radio'
 	});
 
-})();
+})(window.jQuery);
