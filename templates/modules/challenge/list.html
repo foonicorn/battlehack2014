@@ -1,8 +1,8 @@
 <ul class="list">
-	{% for item in list %}
-		<li>
+	{% for item in list reversed %}
+		<li class="{{ object.status }}">
 			<a href="{% url 'core:challenge_detail' spk=item.spk %}" title="">
-				<span class="badge {{ object.status }}">
+				<span class="badge">
 					{% if object.status == 'win' %}
 						<i class="fa fa-thumbs-up fa-lg"></i>
 					{% elif object.status == 'loose' %}
@@ -10,7 +10,7 @@
 					{% else %}
 						<i class="fa fa-clock-o fa-lg"></i>
 					{% endif %}
-					{{ item.amount }}€
+					{{ item.amount }} €
 				</span>
 				<strong>
 					<i class="fa fa-reply"></i>

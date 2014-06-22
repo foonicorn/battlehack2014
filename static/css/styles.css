@@ -2254,11 +2254,17 @@ header h1:after {
   font-size: 0.75em;
   background: #6c6c6c;
 }
-.list .badge.win {
+.list .win strong i {
+  color: #caff00;
+}
+.list .win .badge {
   color: #6c6c6c;
   background: #caff00;
 }
-.list .badge.loose {
+.list .loose strong i {
+  color: #e80c4a;
+}
+.list .loose .badge {
   background: #e80c4a;
 }
 

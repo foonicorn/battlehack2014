@@ -38,13 +38,25 @@
 		color: $color-stats-text;
 		font-size: 0.75em;
 		background: $color-text;
+	}
 
-		&.win {
+	.win {
+		strong i {
+			color: $color-primary;
+		}
+
+		.badge {
 			color: $color-text;
 			background: $color-primary;
 		}
+	}
 
-		&.loose {
+	.loose {
+		strong i {
+			color: $color-loose;
+		}
+
+		.badge {
 			background: $color-loose;
 		}
 	}
