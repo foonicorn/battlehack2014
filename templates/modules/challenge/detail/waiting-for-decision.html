@@ -1,15 +1,21 @@
 <div class="challenge-decision">
 	<h2>Did you win the challenge?</h2>
 	<div class="decision">
-		<form method="post" action="{% url 'core:attendee_update' uuid=attendee.uuid %}">
-			{% csrf_token %}
-			<button type="submit" name="status" value="loose" class="no">
-				<i class="fa fa-thumbs-down fa-lg"></i>
-			</button>
-			<button type="submit" name="status" value="win" class="yes">
-				<i class="fa fa-thumbs-up fa-lg"></i>
-			</button>
-		</form>
+		{% if attendee.status == 'pending' %}
+			<form method="post" action="{% url 'core:attendee_update' uuid=attendee.uuid %}">
+				{% csrf_token %}
+				<button type="submit" name="status" value="loose" class="no">
+					<i class="fa fa-thumbs-down fa-lg"></i>
+				</button>
+				<button type="submit" name="status" value="win" class="yes">
+					<i class="fa fa-thumbs-up fa-lg"></i>
+				</button>
+			</form>
+		{% else %}
+			<span class="result {{ attendee.status }}">
+				<i class="fa fa-{% if attendee.status == 'win' %}thumbs-up{% else %}thumps-down{% endif %} fa-lg"></i>
+			</span>
+		{% endif %}
 
 		<p>
 			{% if attendee.opponent.status == 'pending' %}

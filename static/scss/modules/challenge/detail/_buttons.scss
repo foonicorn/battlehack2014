@@ -25,4 +25,21 @@
 			font-size: 5em;
 		}
 	}
+
+	.result {
+		display: block;
+		margin: 0 0 ($grid-gutter * 2);
+
+		&.win {
+			color: $color-stats;
+		}
+
+		&.loose {
+			color: $color-loose;
+		}
+
+		i {
+			font-size: 10em;
+		}
+	}
 }

@@ -2408,3 +2408,20 @@ header h1:after {
   *display: inline;
   font-size: 5em;
 }
+.challenge-confirm .result,
+.challenge-decision .result {
+  display: block;
+  margin: 0 0 20px;
+}
+.challenge-confirm .result.win,
+.challenge-decision .result.win {
+  color: #caff00;
+}
+.challenge-confirm .result.loose,
+.challenge-decision .result.loose {
+  color: #e80c4a;
+}
+.challenge-confirm .result i,
+.challenge-decision .result i {
+  font-size: 10em;
+}
