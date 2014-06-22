@@ -27,15 +27,18 @@ STATUS_CHOICES = (
 
 class Payment(models.Model):
     challenge = models.ForeignKey('core.Challenge', verbose_name=_('challenge'))
-    user = models.ForeignKey('auth.User', verbose_name=_('user'))
     type = models.CharField(_('type'), max_length=20, choices=TYPE_CHOICES)
     pid = models.CharField(_('payment id'), max_length=100, blank=True)
     status = models.CharField(
-        _('status'), max_length=20, choices=STATUS_CHOICES)
+        _('status'), max_length=20,
+        choices=STATUS_CHOICES, default=STATUS_INITIATED)
+    date_created = models.DateTimeField(_('date created'), auto_now_add=True)
+    date_updated = models.DateTimeField(_('date updated'), auto_now=True)
 
     class Meta:
         verbose_name = _('payment')
         verbose_name_plural = _('payments')
+        unique_together = ('challenge', 'type')
 
     def __unicode__(self):
-        return self.pid
+        return u'{0} / {1}'.format(self.type, self.pid)

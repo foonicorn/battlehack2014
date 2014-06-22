@@ -3,6 +3,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from battlehack.core import views, models
+from battlehack.paypal.models import Payment, TYPE_OWNER, TYPE_RIVAL
 from testing.factories.factory_core import ChallengeFactory, CharityFactory
 from testing.factories.factory_request import RequestFactory
 from testing.factories.factory_user import UserFactory
@@ -88,11 +89,15 @@ class TestChallengeCreate:
         response = views.challenge_create(request)
         challenge = models.Challenge.objects.get(owner=user)
         assert response.status_code == 302
-        assert response['Location'] == '/paypal/start/{0}/'.format(challenge.pk)
+        owner_payment = Payment.objects.get(challenge=challenge, type=TYPE_OWNER)
+        rival_payment = Payment.objects.get(challenge=challenge, type=TYPE_RIVAL)
+        assert owner_payment
+        assert rival_payment
+        assert response['Location'] == '/paypal/start/{0}/'.format(owner_payment.pk)
 
 
 @pytest.mark.django_db
-class TestChallengeCreate:
+class TestChallengeDetail:
 
     def test_url(self):
         url = reverse('core:challenge_detail', kwargs={'pk': 1})

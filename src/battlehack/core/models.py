@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from battlehack.paypal.models import Payment, TYPE_OWNER, TYPE_RIVAL
+
 
 class Charity(models.Model):
     name = models.CharField(_('name'), max_length=100)
@@ -28,6 +30,22 @@ class Challenge(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @property
+    def owner_payment(self):
+        return self.payment_set.get(type=TYPE_OWNER)
+
+    @property
+    def rival_payment(self):
+        return self.payment_set.get(type=TYPE_RIVAL)
+
+    def save(self, *args, **kwargs):
+        create_payments = (self.id is None)
+        result = super(Challenge, self).save(*args, **kwargs)
+        if create_payments:
+            Payment.objects.create(challenge=self, type=TYPE_OWNER)
+            Payment.objects.create(challenge=self, type=TYPE_RIVAL)
+        return result
 
 
 class Rival(models.Model):

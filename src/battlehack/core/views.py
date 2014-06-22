@@ -1,11 +1,12 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, CreateView, DetailView
 
 from . import models, forms
+from battlehack.paypal.models import Payment, TYPE_OWNER
 
 
 class IndexView(TemplateView):
@@ -56,10 +57,11 @@ class ChallengeCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(owner=self.request.user)
-        return HttpResponseRedirect(self.get_success_url(self.object))
+        payment = Payment.objects.get(challenge=self.object, type=TYPE_OWNER)
+        return HttpResponseRedirect(self.get_success_url(payment))
 
-    def get_success_url(self, challenge):
-        return reverse('paypal:start', kwargs={'challenge_pk': challenge.pk})
+    def get_success_url(self, payment):
+        return reverse('paypal:start', kwargs={'payment_pk': payment.pk})
 
 challenge_create = ChallengeCreate.as_view()
 

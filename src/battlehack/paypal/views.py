@@ -1,38 +1,34 @@
-from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView
 
 from . import api
 from .models import Payment
-from battlehack.core.models import Challenge
 
 
 class PaypalStart(RedirectView):
     permanent = False
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(PaypalStart, self).dispatch(*args, **kwargs)
+    def get(self, request, payment_pk, *args, **kwargs):
+        payment = get_object_or_404(Payment, pk=payment_pk)
+        paypal_payment = self.start_payment(payment)
+        redirect_url = self.get_redirect_url(paypal_payment)
+        return HttpResponseRedirect(redirect_url)
 
-    def get_redirect_url(self, challenge_pk):
-        challenge = get_object_or_404(Challenge, pk=challenge_pk)
+    def start_payment(self, payment):
         base_url = self.request.build_absolute_uri('/')
-        payment = api.payment_owner_create(challenge, base_url)
-        redirect_url = api.get_redirect_url(payment)
-        return redirect_url
+        return api.payment_start(payment, base_url)
+
+    def get_redirect_url(self, paypal_payment):
+        return api.get_approval_url(paypal_payment)
+
 
 start = PaypalStart.as_view()
 
 
 class PaypalSuccess(RedirectView):
     permanent = False
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(PaypalSuccess, self).dispatch(*args, **kwargs)
 
     def get(self, request, payment_pk, *args, **kwargs):
         payer_id = self.request.GET.get('PayerID')
